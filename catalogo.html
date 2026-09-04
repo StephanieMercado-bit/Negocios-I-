@@ -3,45 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo | Tienda de Regalos</title>
+    <title>Catálogo | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="img/Logo.png" alt="Logo"> Env&Star
+        </a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="login.html">Iniciar sesión</a></li>
+        </ul>
+    </nav>
 
-    <header>
-        <div class="logo">🎁 RegalosMágicos</div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Sobre Nosotros</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="login.html">Entrar / Registro</a>
-            <a href="perfil.html">Mi Perfil</a>
-        </nav>
-    </header>
-
-    <main class="catalogo-container">
-        <h2>Nuestros Regalos</h2>
-        <div class="grid-productos">
-            <!-- Producto 1 -->
-            <div class="producto-card">
-                <div class="img-placeholder">Imagen Regalo 1</div>
-                <h3>Caja Sorpresa de Dulces</h3>
-                <p>$350 MXN</p>
+    <main>
+        <section class="tarjeta-seccion" style="max-width: 900px;">
+            <h2>Nuestro Catálogo</h2>
+            <div class="grid-catalogo">
+                <!-- Producto 1 -->
+                <div class="producto-card">
+                    <img src="img/manualidad1.jpeg" alt="Caja Sorpresa">
+                    <h3>Caja Sorpresa</h3>
+                    <p>$450.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Sorpresa', '$450.00 MXN', 'Caja decorativa elaborada a mano con detalles especiales.', 'img/manualidad1.jpeg')">Ver detalle</button>
+                </div>
+                <!-- Producto 2 -->
+                <div class="producto-card">
+                    <img src="img/manualidad2.jpeg" alt="Arreglo Especial">
+                    <h3>Arreglo Especial</h3>
+                    <p>$600.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', '$600.00 MXN', 'Arreglo diseñado para momentos inolvidables, armado con dedicación.', 'img/manualidad2.jpeg')">Ver detalle</button>
+                </div>
             </div>
-            <!-- Producto 2 -->
-            <div class="producto-card">
-                <div class="img-placeholder">Imagen Regalo 2</div>
-                <h3>Arreglo Floral y Peluche</h3>
-                <p>$600 MXN</p>
-            </div>
-            <!-- Producto 3 -->
-            <div class="producto-card">
-                <div class="img-placeholder">Imagen Regalo 3</div>
-                <h3>Taza Personalizada</h3>
-                <p>$150 MXN</p>
-            </div>
-        </div>
+        </section>
     </main>
 
+    <!-- Modal Detalle de Producto -->
+    <div id="modalDetalle" class="modal-overlay">
+        <div class="modal-box" style="max-width: 500px;">
+            <h2 id="det-nombre">Nombre</h2>
+            <img id="det-img" src="" alt="Producto" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0;">
+            <h3 id="det-precio" style="color: var(--color-principal); font-size: 1.5rem;">$0.00</h3>
+            <p id="det-desc">Descripción</p>
+            <button class="btn" onclick="alert('¡Próximamente! Inicia sesión para comprar.')">Agregar al carrito</button>
+            <button class="btn btn-secundario" onclick="document.getElementById('modalDetalle').style.display='none'">Regresar</button>
+        </div>
+    </div>
+
+    <script>
+        function abrirDetalle(nombre, precio, desc, img) {
+            document.getElementById('det-nombre').innerText = nombre;
+            document.getElementById('det-precio').innerText = precio;
+            document.getElementById('det-desc').innerText = desc;
+            document.getElementById('det-img').src = img;
+            document.getElementById('modalDetalle').style.display = 'flex';
+        }
+    </script>
 </body>
 </html>

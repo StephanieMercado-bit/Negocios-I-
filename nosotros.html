@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | Env&Star</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="img/Logo.png" alt="Logo"> Env&Star
+        </a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="login.html">Iniciar sesión</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="tarjeta-seccion">
+            <h2>Sobre Nosotros</h2>
+            <p>Nacimos con la idea de hacer que cada momento especial sea inolvidable. Empezamos armando cajas sorpresa y hoy somos tu cómplice principal para regalar sonrisas.</p>
+            <p><strong>¿Qué vendemos?:</strong> Arreglos, cajas personalizadas y detalles únicos armados con mucho amor y dedicación.</p>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+            <p>📍 <strong>Ubicación:</strong> Av. Regalos Felices #123, Centro.</p>
+            <p>🕒 <strong>Horarios:</strong> Lunes a Sábado de 10:00 am a 8:00 pm.</p>
+            
+            <h2 style="margin-top: 40px;">Contáctanos</h2>
+            <form id="formContacto">
+                <input type="text" placeholder="Tu Nombre" required>
+                <input type="email" placeholder="Tu Correo" required>
+                <textarea rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+            <p id="msg-exito" style="color: green; margin-top: 10px; display: none;">¡Mensaje enviado correctamente!</p>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('formContacto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('msg-exito').style.display = 'block';
+            this.reset();
+            setTimeout(() => document.getElementById('msg-exito').style.display = 'none', 3000);
+        });
+    </script>
+</body>
+</html>

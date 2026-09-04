@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | Env&Star</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="img/Logo.png" alt="Logo"> Env&Star
+        </a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="login.html">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="tarjeta-seccion">
+            <h2>Mi Perfil</h2>
+            <div style="background: var(--color-fondo); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 id="perfil-nombre">¡Hola!</h3>
+                <p>Bienvenido a tu panel de Env&Star</p>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
+                <button class="btn btn-secundario" onclick="alert('Aquí irán tus datos (próximamente)')">Mis datos</button>
+                <button class="btn btn-secundario" onclick="alert('Historial de compras (próximamente)')">Mis compras</button>
+            </div>
+            
+            <a href="index.html" class="btn" onclick="localStorage.removeItem('envStarUser');">Cerrar sesión</a>
+        </section>
+    </main>
+
+    <script>
+        // Recuperar el nombre guardado en localStorage o poner uno genérico
+        window.onload = function() {
+            let nombreUser = localStorage.getItem('envStarUser') || 'Usuario Invitado';
+            document.getElementById('perfil-nombre').innerText = '¡Hola, ' + nombreUser + '!';
+        };
+    </script>
+</body>
+</html>

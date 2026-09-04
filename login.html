@@ -1,16 +1,63 @@
-<div id="modal-bienvenida" class="mostrar-modal">
-        <div class="modal-contenido">
-            <h2>¡Bienvenido a la Magia! </h2>
-            <p>Preparando las mejores sorpresas para ti...</p>
-            <button onclick="cerrarModal()" class="btn-cerrar">¡Entrar!</button>
-        </div>
-    </div>
-<script>
-        // Función para cerrar la ventana cuando el usuario hace clic en el botón
-        function cerrarModal() {
-            const modal = document.getElementById('modal-bienvenida');
-            modal.classList.remove('mostrar-modal');
-        }
-        
-    
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Env&Star</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="img/Logo.png" alt="Logo"> Env&Star
+        </a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="login.html">Iniciar sesión</a></li>
+        </ul>
+    </nav>
+
+    <main style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- Iniciar Sesión -->
+        <section class="tarjeta-seccion" style="flex: 1; min-width: 300px;">
+            <h2>Iniciar Sesión</h2>
+            <form id="formLogin">
+                <input type="email" placeholder="Correo electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+        </section>
+
+        <!-- Registro -->
+        <section class="tarjeta-seccion" style="flex: 1; min-width: 300px;">
+            <h2>Crear Cuenta</h2>
+            <form id="formRegistro">
+                <!-- Como detalle, puse un ejemplo en el placeholder -->
+                <input type="text" id="reg-nombre" placeholder="Ej. Diego Mercado" required>
+                <input type="email" placeholder="Correo electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn btn-secundario">Registrarme</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Guardar usuario simulado
+        document.getElementById('formRegistro').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('reg-nombre').value;
+            localStorage.setItem('envStarUser', nombre);
+            alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+            this.reset();
+        });
+
+        // Login simulado
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'perfil.html';
+        });
     </script>
+</body>
+</html>
