@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Regalos | Inicio</title>
+    <title>Bienvenidos | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="justify-content: center; align-items: center; background: linear-gradient(rgba(250, 212, 212, 0.9), rgba(250, 212, 212, 0.9)), url('img/manualidad2.jpeg') center/cover;">
 
-    <!-- Menú de Navegación -->
-    <header>
-        <div class="logo">🎁 RegalosMágicos</div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Sobre Nosotros</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="login.html">Entrar / Registro</a>
-            <a href="perfil.html">Mi Perfil</a>
-        </nav>
-    </header>
-
-    <!-- Contenido Principal -->
-    <main class="hero">
-        <div class="hero-content">
-            <h1>El regalo perfecto para cada ocasión</h1>
-            <p>Encuentra detalles únicos, cajas personalizadas y sorpresas inolvidables.</p>
-            <a href="catalogo.html" class="btn">Ver Catálogo</a>
-        </div>
+    <main style="width: 100%; display: flex; justify-content: center; padding: 20px;">
+        <section class="tarjeta-seccion" style="max-width: 500px; padding: 50px 30px;">
+            <img src="img/Logo.png" alt="Env&Star Logo" style="max-width: 180px; margin-bottom: 20px;">
+            <h1 style="font-size: 2rem; margin-bottom: 10px;">¡Descubre el regalo perfecto!</h1>
+            <p>Ingresa tu correo para acceder a nuestro catálogo exclusivo y recibir ofertas especiales antes que nadie.</p>
+            
+            <form id="formMarketing" style="margin-top: 25px;">
+                <input type="email" id="correoMarketing" placeholder="Tu mejor correo electrónico" required style="padding: 15px; font-size: 1.1rem; text-align: center;">
+                <button type="submit" class="btn" style="padding: 15px; font-size: 1.1rem;">Entrar a la tienda</button>
+            </form>
+            
+            <p style="font-size: 0.8rem; margin-top: 20px; color: #666;">No enviaremos spam, lo prometemos.</p>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 RegalosMágicos. Todos los derechos reservados.</p>
-    </footer>
-
+    <script>
+        document.getElementById('formMarketing').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            // Opcional: Aquí podrías guardar el correo en localStorage si lo necesitas después
+            const correo = document.getElementById('correoMarketing').value;
+            localStorage.setItem('leadCorreo', correo);
+            
+            // Redirigir a la tienda real
+            window.location.href = 'inicio.html';
+        });
+    </script>
 </body>
 </html>

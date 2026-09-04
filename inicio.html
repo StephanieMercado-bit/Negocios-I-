@@ -3,67 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Regalos | Inicio</title>
+    <title>Inicio | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="img/Logo.png" alt="Logo"> Env&Star
+        </a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="login.html">Iniciar sesión</a></li>
+        </ul>
+    </nav>
 
-    <div id="pantalla-intro">
-        <h1 class="logo-animado">RegalosMágicos</h1>
-    </div>
-
-    <div id="modal-bienvenida">
-        <div class="modal-contenido">
-            <h2>¡Hola! 🎁</h2>
-            <p>Estás entrando a la tienda. Preparando sorpresas...</p>
-        </div>
-    </div>
-
-    <header>
-        <div class="logo">🎁 RegalosMágicos</div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Sobre Nosotros</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="login.html">Entrar / Registro</a>
-            <a href="perfil.html">Mi Perfil</a>
-        </nav>
-    </header>
-
-    <main class="hero">
-        <div class="hero-content">
-            <h1>El regalo perfecto para cada ocasión</h1>
-            <p>Encuentra detalles únicos, cajas personalizadas y sorpresas inolvidables.</p>
-            <a href="catalogo.html" class="btn">Ver Catálogo</a>
-        </div>
+    <main>
+        <section class="tarjeta-seccion">
+            <img src="img/Logo.png" alt="Env&Star Logo Grande" style="max-width: 250px; margin-bottom: 20px;">
+            <h1>Bienvenidos a Env&Star</h1>
+            <p>La tienda de regalos perfecta para sorprender a los que más quieres.</p>
+            <a href="catalogo.html" class="btn">Ver productos</a>
+        </section>
     </main>
-
-    <footer>
-        <p>&copy; 2026 RegalosMágicos. Todos los derechos reservados.</p>
-    </footer>
-
-    <script>
-        // Esperamos a que la animación termine (3 segundos)
-        setTimeout(() => {
-            // Ocultamos la pantalla negra de intro
-            const intro = document.getElementById('pantalla-intro');
-            intro.style.opacity = '0'; 
-            
-            setTimeout(() => {
-                intro.style.display = 'none'; // La quitamos por completo
-                
-                // Mostramos la ventanita de bienvenida
-                const modal = document.getElementById('modal-bienvenida');
-                modal.classList.add('mostrar-modal');
-
-                // Ocultamos la ventanita después de 2.5 segundos
-                setTimeout(() => {
-                    modal.classList.remove('mostrar-modal');
-                }, 2500);
-
-            }, 500); // Medio segundo para que se desvanezca suavemente
-
-        }, 3000); // 3 segundos de intro
-    </script>
 </body>
 </html>

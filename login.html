@@ -1,0 +1,16 @@
+<div id="modal-bienvenida" class="mostrar-modal">
+        <div class="modal-contenido">
+            <h2>¡Bienvenido a la Magia! </h2>
+            <p>Preparando las mejores sorpresas para ti...</p>
+            <button onclick="cerrarModal()" class="btn-cerrar">¡Entrar!</button>
+        </div>
+    </div>
+<script>
+        // Función para cerrar la ventana cuando el usuario hace clic en el botón
+        function cerrarModal() {
+            const modal = document.getElementById('modal-bienvenida');
+            modal.classList.remove('mostrar-modal');
+        }
+        
+    
+    </script>
