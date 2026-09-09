@@ -5,38 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilo para el icono del carrito en el menú */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .cart-badge {
+            background-color: white;
+            color: var(--color-principal);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo-container">
+        <a href="inicio.html" class="logo-container">
             <img src="img/Logo.png" alt="Logo"> Env&Star
         </a>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="inicio.html">Inicio</a></li>
             <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="login.html">Iniciar sesión</a></li>
+            <!-- Icono del carrito (Simulado) -->
+            <li class="cart-icon" onclick="mostrarAlerta('La función de carrito estará habilitada muy pronto.', '🛒 Próximamente')">
+                🛒 <span class="cart-badge">0</span>
+            </li>
         </ul>
     </nav>
 
-    <main>
-        <section class="tarjeta-seccion" style="max-width: 900px;">
-            <h2>Nuestro Catálogo</h2>
+    <main class="contenedor-catalogo">
+        <!-- Barra Lateral de Categorías -->
+        <aside class="sidebar-categorias">
+            <h3>Categorías</h3>
+            <ul class="lista-categorias">
+                <li><button class="categoria-btn activa" onclick="filtrar('todas')"><span class="cat-titulo">🌟 Todas</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('peluches')"><span class="cat-titulo">🧸 Peluches</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('pareja')"><span class="cat-titulo">💌 Para tu pareja</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('cumpleanos')"><span class="cat-titulo">🎂 Cumpleaños</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('papeleria')"><span class="cat-titulo">🌸 Papelería</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('accesorios')"><span class="cat-titulo">🎀 Accesorios</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('decoracion')"><span class="cat-titulo">🕯️ Decoración</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('dulces')"><span class="cat-titulo">🍓 Dulces</span></button></li>
+                <li><button class="categoria-btn" onclick="filtrar('cajas')"><span class="cat-titulo">🎁 Cajas sorpresa</span></button></li>
+            </ul>
+        </aside>
+
+        <!-- Área de Productos -->
+        <section class="productos-area">
+            <h2 id="titulo-seccion">🌟 Todos los productos</h2>
             <div class="grid-catalogo">
+                
                 <!-- Producto 1 -->
-                <div class="producto-card">
-                    <img src="img/manualidad1.jpeg" alt="Caja Sorpresa">
-                    <h3>Caja Sorpresa</h3>
+                <div class="producto-card item-producto" data-categoria="decoracion">
+                    <img src="img/manualidad1.jpeg" alt="Adorno de Mesa">
+                    <h3>Adorno de Mesa</h3>
                     <p>$450.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Sorpresa', '$450.00 MXN', 'Caja decorativa elaborada a mano con detalles especiales.', 'img/manualidad1.jpeg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Adorno de Mesa', '$450.00 MXN', 'Arreglo personalizados para regalar a tu pareja o amigo, elaborado especialmente a mano', 'img/manualidad1.jpeg')">Ver detalle</button>
                 </div>
+                
                 <!-- Producto 2 -->
-                <div class="producto-card">
+                <div class="producto-card item-producto" data-categoria="cajas">
                     <img src="img/manualidad2.jpeg" alt="Arreglo Especial">
                     <h3>Arreglo Especial</h3>
                     <p>$600.00 MXN</p>
                     <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', '$600.00 MXN', 'Arreglo diseñado para momentos inolvidables, armado con dedicación.', 'img/manualidad2.jpeg')">Ver detalle</button>
                 </div>
+
+                <!-- Producto 3 -->
+                <div class="producto-card item-producto" data-categoria="peluches">
+                    <div style="height: 180px; background: var(--color-fondo); border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">Foto Peluche</div>
+                    <h3>Capibara Feliz</h3>
+                    <p>$250.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara Feliz', '$250.00 MXN', 'Peluche súper suave de capibara.', '')">Ver detalle</button>
+                </div>
+
             </div>
         </section>
     </main>
@@ -45,21 +96,82 @@
     <div id="modalDetalle" class="modal-overlay">
         <div class="modal-box" style="max-width: 500px;">
             <h2 id="det-nombre">Nombre</h2>
-            <img id="det-img" src="" alt="Producto" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0;">
+            <img id="det-img" src="" alt="Producto" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; display: none;">
             <h3 id="det-precio" style="color: var(--color-principal); font-size: 1.5rem;">$0.00</h3>
             <p id="det-desc">Descripción</p>
-            <button class="btn" onclick="alert('¡Próximamente! Inicia sesión para comprar.')">Agregar al carrito</button>
+            
+            <!-- Botón simulado -->
+            <button class="btn" onclick="mostrarAlerta('¡Próximamente! Por el momento, inicia sesión para conocer más detalles o visítanos en sucursal.', 'Próximamente')">Agregar al carrito</button>
             <button class="btn btn-secundario" onclick="document.getElementById('modalDetalle').style.display='none'">Regresar</button>
         </div>
     </div>
 
+    <!-- Modal Alerta Personalizada General -->
+    <div id="customAlert" class="modal-overlay">
+        <div class="modal-box" style="max-width: 350px; text-align: center;">
+            <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
+            <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5;">Mensaje</p>
+            <button class="btn" onclick="cerrarAlerta()">Aceptar</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Env&Star. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script>
+        // Función para abrir el detalle
         function abrirDetalle(nombre, precio, desc, img) {
             document.getElementById('det-nombre').innerText = nombre;
             document.getElementById('det-precio').innerText = precio;
             document.getElementById('det-desc').innerText = desc;
-            document.getElementById('det-img').src = img;
+            
+            const imgElement = document.getElementById('det-img');
+            if(img) {
+                imgElement.src = img;
+                imgElement.style.display = 'block';
+            } else {
+                imgElement.style.display = 'none';
+            }
+            
             document.getElementById('modalDetalle').style.display = 'flex';
+        }
+
+        // Sistema de alertas personalizadas
+        function mostrarAlerta(mensaje, titulo = 'Aviso', accion = null) {
+            document.getElementById('alertTitulo').innerText = titulo;
+            document.getElementById('alertMensaje').innerText = mensaje;
+            document.getElementById('customAlert').style.display = 'flex';
+            window.accionPostAlerta = accion;
+        }
+
+        function cerrarAlerta() {
+            document.getElementById('customAlert').style.display = 'none';
+            if (window.accionPostAlerta) {
+                window.accionPostAlerta();
+                window.accionPostAlerta = null;
+            }
+        }
+
+        // Filtro visual de categorías
+        function filtrar(categoria) {
+            let productos = document.querySelectorAll('.item-producto');
+            productos.forEach(producto => {
+                if(categoria === 'todas' || producto.getAttribute('data-categoria') === categoria) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+
+            let botones = document.querySelectorAll('.categoria-btn');
+            botones.forEach(btn => btn.classList.remove('activa'));
+            event.currentTarget.classList.add('activa');
+
+            let nombreCategoria = event.currentTarget.querySelector('.cat-titulo').innerText;
+            document.getElementById('titulo-seccion').innerText = nombreCategoria;
         }
     </script>
 </body>
