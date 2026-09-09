@@ -15,7 +15,7 @@
             <p>Ingresa tu correo para acceder a nuestro catálogo exclusivo y recibir ofertas especiales antes que nadie.</p>
             
             <form id="formMarketing" style="margin-top: 25px;">
-                <input type="email" id="correoMarketing" placeholder="Tu mejor correo electrónico" required style="padding: 15px; font-size: 1.1rem; text-align: center;">
+                <input type="email" id="correoMarketing" placeholder="Tu mejor correo electrónico" style="padding: 15px; font-size: 1.1rem; text-align: center;">
                 <button type="submit" class="btn" style="padding: 15px; font-size: 1.1rem;">Entrar a la tienda</button>
             </form>
             
@@ -27,9 +27,7 @@
         document.getElementById('formMarketing').addEventListener('submit', function(e) {
             e.preventDefault(); // Evita que la página se recargue
             
-            // Opcional: Aquí podrías guardar el correo en localStorage si lo necesitas después
-            const correo = document.getElementById('correoMarketing').value;
-            localStorage.setItem('leadCorreo', correo);
+
             
             // Redirigir a la tienda real
             window.location.href = 'inicio.html';
