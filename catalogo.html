@@ -6,45 +6,27 @@
     <title>Catálogo | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Estilo para el icono del carrito en el menú */
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        .cart-badge {
-            background-color: white;
-            color: var(--color-principal);
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 0.7rem;
-            position: absolute;
-            top: -10px;
-            right: -15px;
-            font-weight: bold;
-        }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
+        .cart-badge { background-color: white; color: var(--color-principal); border-radius: 50%; padding: 2px 6px; font-size: 0.7rem; position: absolute; top: -10px; right: -15px; font-weight: bold; }
     </style>
 </head>
 <body>
     <nav>
-        <a href="inicio.html" class="logo-container">
-            <img src="img/Logo.png" alt="Logo"> Env&Star
-        </a>
+        <a href="inicio.html" class="logo-container"><img src="img/Logo.png" alt="Logo"> Env&Star</a>
         <ul>
             <li><a href="inicio.html">Inicio</a></li>
             <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="login.html">Iniciar sesión</a></li>
-            <!-- Icono del carrito (Simulado) -->
-            <li class="cart-icon" onclick="mostrarAlerta('La función de carrito estará habilitada muy pronto.', '🛒 Próximamente')">
-                🛒 <span class="cart-badge">0</span>
-            </li>
+            <li class="cart-icon" onclick="abrirCarrito()">🛒 <span id="cart-count" class="cart-badge">0</span></li>
         </ul>
     </nav>
 
     <main class="contenedor-catalogo">
-        <!-- Barra Lateral de Categorías -->
         <aside class="sidebar-categorias">
+            <!-- Barra de búsqueda -->
+            <input type="text" id="buscador" class="buscador" placeholder="Buscar producto..." onkeyup="buscarProducto()">
+            
             <h3>Categorías</h3>
             <ul class="lista-categorias">
                 <li><button class="categoria-btn activa" onclick="filtrar('todas')"><span class="cat-titulo">🌟 Todas</span></button></li>
@@ -52,61 +34,97 @@
                 <li><button class="categoria-btn" onclick="filtrar('pareja')"><span class="cat-titulo">💌 Para tu pareja</span></button></li>
                 <li><button class="categoria-btn" onclick="filtrar('cumpleanos')"><span class="cat-titulo">🎂 Cumpleaños</span></button></li>
                 <li><button class="categoria-btn" onclick="filtrar('papeleria')"><span class="cat-titulo">🌸 Papelería</span></button></li>
-                <li><button class="categoria-btn" onclick="filtrar('accesorios')"><span class="cat-titulo">🎀 Accesorios</span></button></li>
-                <li><button class="categoria-btn" onclick="filtrar('decoracion')"><span class="cat-titulo">🕯️ Decoración</span></button></li>
-                <li><button class="categoria-btn" onclick="filtrar('dulces')"><span class="cat-titulo">🍓 Dulces</span></button></li>
                 <li><button class="categoria-btn" onclick="filtrar('cajas')"><span class="cat-titulo">🎁 Cajas sorpresa</span></button></li>
             </ul>
         </aside>
 
-        <!-- Área de Productos -->
         <section class="productos-area">
-            <h2 id="titulo-seccion">🌟 Todos los productos</h2>
-            <div class="grid-catalogo">
-                
-                <!-- Producto 1 -->
-                <div class="producto-card item-producto" data-categoria="decoracion">
-                    <img src="img/manualidad1.jpeg" alt="Adorno de Mesa">
-                    <h3>Adorno de Mesa</h3>
-                    <p>$450.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Adorno de Mesa', '$450.00 MXN', 'Arreglo personalizados para regalar a tu pareja o amigo, elaborado especialmente a mano', 'img/manualidad1.jpeg')">Ver detalle</button>
+            <h2 id="titulo-seccion">Todos los productos</h2>
+            <div class="grid-catalogo" id="grid-productos">
+                <!-- 8 Productos Simulados -->
+                <div class="producto-card item-producto" data-categoria="cajas" data-nombre="Caja Sorpresa">
+                    <span class="etiqueta etiqueta-oferta">Oferta</span>
+                    <img src="img/manualidad1.jpeg" alt="Caja Sorpresa">
+                    <h3>Caja Sorpresa</h3><p>$450.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Sorpresa', 450, 'Caja decorativa elaborada a mano.', 'img/manualidad1.jpeg')">Ver detalle</button>
                 </div>
-                
-                <!-- Producto 2 -->
-                <div class="producto-card item-producto" data-categoria="cajas">
+                <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Arreglo Especial">
                     <img src="img/manualidad2.jpeg" alt="Arreglo Especial">
-                    <h3>Arreglo Especial</h3>
-                    <p>$600.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', '$600.00 MXN', 'Arreglo diseñado para momentos inolvidables, armado con dedicación.', 'img/manualidad2.jpeg')">Ver detalle</button>
+                    <h3>Arreglo Especial</h3><p>$600.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', 600, 'Arreglo diseñado para momentos inolvidables.', 'img/manualidad2.jpeg')">Ver detalle</button>
                 </div>
-
-                <!-- Producto 3 -->
-                <div class="producto-card item-producto" data-categoria="peluches">
-                    <div style="height: 180px; background: var(--color-fondo); border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">Foto Peluche</div>
-                    <h3>Capibara Feliz</h3>
-                    <p>$250.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara Feliz', '$250.00 MXN', 'Peluche súper suave de capibara.', '')">Ver detalle</button>
+                <div class="producto-card item-producto" data-categoria="peluches" data-nombre="Capibara Feliz">
+                    <span class="etiqueta etiqueta-nuevo">Nuevo</span>
+                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">🧸</div>
+                    <h3>Capibara Feliz</h3><p>$250.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara Feliz', 250, 'Peluche súper suave de capibara.', '')">Ver detalle</button>
                 </div>
-
+                <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Kit Cumpleañero">
+                    <img src="img/1.png" alt="Kit">
+                    <h3>Kit Cumpleañero</h3><p>$350.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates.', 'img/1.png')">Ver detalle</button>
+                </div>
+                <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Taza Mágica">
+                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">☕</div>
+                    <h3>Taza Mágica</h3><p>$180.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente.', '')">Ver detalle</button>
+                </div>
+                <div class="producto-card item-producto" data-categoria="papeleria" data-nombre="Libreta Kawaii">
+                    <span class="etiqueta etiqueta-nuevo">Nuevo</span>
+                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">📔</div>
+                    <h3>Libreta Kawaii</h3><p>$120.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Libreta Kawaii', 120, 'Libreta decorada de 100 hojas.', '')">Ver detalle</button>
+                </div>
+                <div class="producto-card item-producto" data-categoria="cajas" data-nombre="Caja Dulce">
+                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">🎁</div>
+                    <h3>Caja Dulce</h3><p>$200.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Dulce', 200, 'Surtido de chocolates finos.', '')">Ver detalle</button>
+                </div>
+                <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Globo Metálico">
+                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">🎈</div>
+                    <h3>Globo Metálico</h3><p>$80.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio.', '')">Ver detalle</button>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Modal Detalle de Producto -->
+    <!-- Modal Detalle -->
     <div id="modalDetalle" class="modal-overlay">
         <div class="modal-box" style="max-width: 500px;">
             <h2 id="det-nombre">Nombre</h2>
-            <img id="det-img" src="" alt="Producto" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; display: none;">
-            <h3 id="det-precio" style="color: var(--color-principal); font-size: 1.5rem;">$0.00</h3>
+            <img id="det-img" src="" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; display: none;">
+            <h3 id="det-precio-texto" style="color: var(--color-principal); font-size: 1.5rem;">$0.00</h3>
             <p id="det-desc">Descripción</p>
             
-            <!-- Botón simulado -->
-            <button class="btn" onclick="mostrarAlerta('¡Próximamente! Por el momento, inicia sesión para conocer más detalles o visítanos en sucursal.', 'Próximamente')">Agregar al carrito</button>
+            <div class="selector-cantidad" style="justify-content: center;">
+                <button onclick="cambiarCantidadDetalle(-1)">-</button>
+                <span id="det-cantidad" style="font-size: 1.2rem; font-weight: bold; width: 30px;">1</span>
+                <button onclick="cambiarCantidadDetalle(1)">+</button>
+            </div>
+            
+            <button class="btn" onclick="agregarAlCarrito()">Agregar al carrito</button>
             <button class="btn btn-secundario" onclick="document.getElementById('modalDetalle').style.display='none'">Regresar</button>
+            
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+            <p style="font-size: 0.9rem; color: #666;"><strong>Productos Relacionados:</strong> Taza Mágica, Tarjeta Dedicatoria.</p>
         </div>
     </div>
 
-    <!-- Modal Alerta Personalizada General -->
+    <!-- Modal Carrito -->
+    <div id="modalCarrito" class="modal-overlay">
+        <div class="modal-box" style="max-width: 450px; text-align: left;">
+            <h2 style="color: var(--color-principal); border-bottom: 2px solid var(--color-fondo); padding-bottom: 10px;">🛒 Mi Carrito</h2>
+            <div id="lista-carrito" style="margin: 20px 0; max-height: 300px; overflow-y: auto;"></div>
+            <h3 style="text-align: right; margin-bottom: 20px;">Total: <span id="total-carrito" style="color: var(--color-principal);">$0.00 MXN</span></h3>
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="btn btn-secundario" onclick="document.getElementById('modalCarrito').style.display='none'">Seguir comprando</button>
+                <button class="btn" onclick="mostrarAlerta('Checkout en construcción. ¡Paso siguiente próximamente!', 'Ir a pagar')">Ir a pagar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Alerta Personalizada -->
     <div id="customAlert" class="modal-overlay">
         <div class="modal-box" style="max-width: 350px; text-align: center;">
             <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
@@ -115,63 +133,125 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Env&Star. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
     <script>
-        // Función para abrir el detalle
+        // --- BUSCADOR Y FILTROS ---
+        function filtrar(categoria) {
+            document.querySelectorAll('.item-producto').forEach(prod => {
+                prod.style.display = (categoria === 'todas' || prod.getAttribute('data-categoria') === categoria) ? 'block' : 'none';
+            });
+            document.querySelectorAll('.categoria-btn').forEach(btn => btn.classList.remove('activa'));
+            event.currentTarget.classList.add('activa');
+            document.getElementById('titulo-seccion').innerText = event.currentTarget.querySelector('.cat-titulo').innerText;
+        }
+
+        function buscarProducto() {
+            let filtro = document.getElementById('buscador').value.toLowerCase();
+            document.querySelectorAll('.item-producto').forEach(prod => {
+                let nombre = prod.getAttribute('data-nombre').toLowerCase();
+                prod.style.display = nombre.includes(filtro) ? 'block' : 'none';
+            });
+            document.getElementById('titulo-seccion').innerText = "Resultados de búsqueda";
+        }
+
+        // --- LÓGICA DE CARRITO REAL ---
+        let carrito = [];
+        let prodTemp = { cantidad: 1 };
+
         function abrirDetalle(nombre, precio, desc, img) {
+            prodTemp = { nombre, precio, img, cantidad: 1 };
             document.getElementById('det-nombre').innerText = nombre;
-            document.getElementById('det-precio').innerText = precio;
+            document.getElementById('det-precio-texto').innerText = `$${precio.toFixed(2)} MXN`;
             document.getElementById('det-desc').innerText = desc;
+            document.getElementById('det-cantidad').innerText = '1';
             
-            const imgElement = document.getElementById('det-img');
-            if(img) {
-                imgElement.src = img;
-                imgElement.style.display = 'block';
-            } else {
-                imgElement.style.display = 'none';
-            }
-            
+            const imgEl = document.getElementById('det-img');
+            img ? (imgEl.src = img, imgEl.style.display = 'block') : imgEl.style.display = 'none';
             document.getElementById('modalDetalle').style.display = 'flex';
         }
 
-        // Sistema de alertas personalizadas
+        function cambiarCantidadDetalle(delta) {
+            let nuevaCant = prodTemp.cantidad + delta;
+            if (nuevaCant >= 1) {
+                prodTemp.cantidad = nuevaCant;
+                document.getElementById('det-cantidad').innerText = prodTemp.cantidad;
+            }
+        }
+
+        function agregarAlCarrito() {
+            // Verificar si ya existe en el carrito para sumar cantidad
+            let existente = carrito.find(p => p.nombre === prodTemp.nombre);
+            if (existente) { existente.cantidad += prodTemp.cantidad; } 
+            else { carrito.push({...prodTemp}); }
+            
+            actualizarUI();
+            document.getElementById('modalDetalle').style.display = 'none';
+            mostrarAlerta(`Se agregó ${prodTemp.cantidad}x "${prodTemp.nombre}" a tu carrito.`, '¡Agregado!');
+        }
+
+        function actualizarUI() {
+            document.getElementById('cart-count').innerText = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+            renderCarrito();
+        }
+
+        function renderCarrito() {
+            const lista = document.getElementById('lista-carrito');
+            let total = 0;
+            if (carrito.length === 0) {
+                lista.innerHTML = '<p style="text-align:center; color:#888;">Tu carrito está vacío.</p>';
+                document.getElementById('total-carrito').innerText = '$0.00 MXN';
+                return;
+            }
+            
+            let html = '';
+            carrito.forEach((p, index) => {
+                let subtotal = p.precio * p.cantidad;
+                total += subtotal;
+                html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <strong>${p.nombre}</strong> <br>
+                        <small>$${p.precio.toFixed(2)} c/u</small>
+                    </div>
+                    <div class="cart-item-acciones">
+                        <div class="selector-cantidad" style="margin:0;">
+                            <button onclick="modificarCantidad(${index}, -1)">-</button>
+                            <span>${p.cantidad}</span>
+                            <button onclick="modificarCantidad(${index}, 1)">+</button>
+                        </div>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">🗑️</button>
+                    </div>
+                </div>`;
+            });
+            lista.innerHTML = html;
+            document.getElementById('total-carrito').innerText = `$${total.toFixed(2)} MXN`;
+        }
+
+        function modificarCantidad(index, delta) {
+            if (carrito[index].cantidad + delta >= 1) {
+                carrito[index].cantidad += delta;
+                actualizarUI();
+            }
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarUI();
+        }
+
+        function abrirCarrito() {
+            renderCarrito();
+            document.getElementById('modalCarrito').style.display = 'flex';
+        }
+
         function mostrarAlerta(mensaje, titulo = 'Aviso', accion = null) {
             document.getElementById('alertTitulo').innerText = titulo;
             document.getElementById('alertMensaje').innerText = mensaje;
             document.getElementById('customAlert').style.display = 'flex';
             window.accionPostAlerta = accion;
         }
-
         function cerrarAlerta() {
             document.getElementById('customAlert').style.display = 'none';
-            if (window.accionPostAlerta) {
-                window.accionPostAlerta();
-                window.accionPostAlerta = null;
-            }
-        }
-
-        // Filtro visual de categorías
-        function filtrar(categoria) {
-            let productos = document.querySelectorAll('.item-producto');
-            productos.forEach(producto => {
-                if(categoria === 'todas' || producto.getAttribute('data-categoria') === categoria) {
-                    producto.style.display = 'block';
-                } else {
-                    producto.style.display = 'none';
-                }
-            });
-
-            let botones = document.querySelectorAll('.categoria-btn');
-            botones.forEach(btn => btn.classList.remove('activa'));
-            event.currentTarget.classList.add('activa');
-
-            let nombreCategoria = event.currentTarget.querySelector('.cat-titulo').innerText;
-            document.getElementById('titulo-seccion').innerText = nombreCategoria;
+            if (window.accionPostAlerta) { window.accionPostAlerta(); window.accionPostAlerta = null; }
         }
     </script>
 </body>
