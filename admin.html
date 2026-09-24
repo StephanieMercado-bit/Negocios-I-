@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador | Env&Star</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: none;"> 
+
+    <div class="admin-layout">
+        <!-- Sidebar Administrador -->
+        <aside class="admin-sidebar">
+            <h2> Panel Admin</h2>
+            <button class="activo" onclick="navegarAdmin('dashboard', this)">📊 Resumen</button>
+            <button onclick="navegarAdmin('productos', this)">📦 Productos</button>
+            <button onclick="mostrarAlerta('Sección de Pedidos en desarrollo.')">🛍️ Pedidos</button>
+            <button onclick="mostrarAlerta('Sección de Promociones en desarrollo.')">🎟️ Promociones</button>
+            <button onclick="window.location.href='inicio.html'" style="margin-top: auto; border-top: 1px solid #34495e;">⬅️ Volver a la Tienda</button>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="admin-content">
+            
+            <!-- Vista Resumen (Dashboard) -->
+            <section id="sec-dashboard">
+                <h1 style="color: var(--texto-oscuro); margin-bottom: 20px;">Hola, Estrella</h1>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3 style="color: var(--color-principal); font-size: 2rem;">12</h3>
+                        <p>Productos Activos</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: var(--color-principal); font-size: 2rem;">5</h3>
+                        <p>Pedidos Pendientes</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: var(--color-principal); font-size: 2rem;">$4,250</h3>
+                        <p>Ventas del Mes</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vista Gestión de Productos -->
+            <section id="sec-productos" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1 style="color: var(--texto-oscuro);">Gestión de Productos</h1>
+                    <button class="btn" onclick="abrirModalProducto('nuevo')">+ Agregar Producto</button>
+                </div>
+
+                <table class="admin-tabla">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="img/manualidad1.jpeg" alt="Caja"></td>
+                            <td>Caja Sorpresa</td>
+                            <td>Cajas</td>
+                            <td>$450.00</td>
+                            <td>
+                                <button class="btn-secundario" style="padding: 5px 10px;" onclick="abrirModalProducto('editar', 'Caja Sorpresa', 450, 'Cajas')">Editar</button>
+                                <button class="btn-eliminar" onclick="confirmarEliminar('Caja Sorpresa')">Eliminar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/manualidad2.jpeg" alt="Arreglo"></td>
+                            <td>Arreglo Especial</td>
+                            <td>Pareja</td>
+                            <td>$600.00</td>
+                            <td>
+                                <button class="btn-secundario" style="padding: 5px 10px;" onclick="abrirModalProducto('editar', 'Arreglo Especial', 600, 'Pareja')">Editar</button>
+                                <button class="btn-eliminar" onclick="confirmarEliminar('Arreglo Especial')">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal Formulario Producto (Admin) -->
+    <div id="modalFormProducto" class="modal-overlay">
+        <div class="modal-box" style="max-width: 400px; text-align: left;">
+            <h2 id="modalFormTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Agregar Producto</h2>
+            <form id="formProductoAdmin">
+                <input type="text" id="admin-prod-nombre" placeholder="Nombre del producto" required style="width: 100%; margin-bottom: 10px;">
+                <input type="number" id="admin-prod-precio" placeholder="Precio ($)" required style="width: 100%; margin-bottom: 10px;">
+                <select id="admin-prod-categoria" style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                    <option value="Cajas">Cajas</option>
+                    <option value="Pareja">Pareja</option>
+                    <option value="Peluches">Peluches</option>
+                </select>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 15px;">
+                    <button type="button" class="btn btn-secundario" onclick="document.getElementById('modalFormProducto').style.display='none'">Cancelar</button>
+                    <button type="submit" class="btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Alerta Admin -->
+    <div id="customAlert" class="modal-overlay">
+        <div class="modal-box" style="max-width: 350px; text-align: center;">
+            <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
+            <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5;">Mensaje</p>
+            <div id="alertBotones">
+                <button class="btn" onclick="cerrarAlerta()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navegación en el Panel Admin
+        function navegarAdmin(seccionId, botonSeleccionado) {
+            document.getElementById('sec-dashboard').style.display = 'none';
+            document.getElementById('sec-productos').style.display = 'none';
+            
+            document.getElementById('sec-' + seccionId).style.display = 'block';
+            
+            // Actualizar clase activa en el menú lateral
+            let botonesMenu = document.querySelectorAll('.admin-sidebar button');
+            botonesMenu.forEach(btn => btn.classList.remove('activo'));
+            botonSeleccionado.classList.add('activo');
+        }
+
+        // Lógica Formularios Producto
+        function abrirModalProducto(modo, nombre = '', precio = '', categoria = 'Cajas') {
+            document.getElementById('modalFormTitulo').innerText = modo === 'nuevo' ? 'Nuevo Producto' : 'Editar Producto';
+            document.getElementById('admin-prod-nombre').value = nombre;
+            document.getElementById('admin-prod-precio').value = precio;
+            document.getElementById('admin-prod-categoria').value = categoria;
+            
+            document.getElementById('modalFormProducto').style.display = 'flex';
+        }
+
+        document.getElementById('formProductoAdmin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('modalFormProducto').style.display = 'none';
+            mostrarAlerta('Los cambios se han guardado correctamente (Simulación).', '¡Guardado exitoso!');
+        });
+
+        // Eliminar Producto (Simulación de confirmación)
+        function confirmarEliminar(nombre) {
+            document.getElementById('alertTitulo').innerText = 'Eliminar Producto';
+            document.getElementById('alertMensaje').innerText = `¿Estás seguro que deseas eliminar "${nombre}"?`;
+            
+            // Reemplazar botones temporales para la confirmación
+            document.getElementById('alertBotones').innerHTML = `
+                <button class="btn btn-secundario" onclick="cerrarAlerta()">Cancelar</button>
+                <button class="btn btn-eliminar" style="background:#d9534f;" onclick="ejecutarEliminar()">Sí, eliminar</button>
+            `;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function ejecutarEliminar() {
+            cerrarAlerta();
+            setTimeout(() => {
+                mostrarAlerta('El producto ha sido eliminado del catálogo.', 'Eliminado');
+            }, 300);
+        }
+
+        function mostrarAlerta(mensaje, titulo = 'Aviso') {
+            document.getElementById('alertTitulo').innerText = titulo;
+            document.getElementById('alertMensaje').innerText = mensaje;
+            document.getElementById('alertBotones').innerHTML = `<button class="btn" onclick="cerrarAlerta()">Aceptar</button>`;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function cerrarAlerta() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
