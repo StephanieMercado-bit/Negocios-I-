@@ -29,7 +29,7 @@
             
             <h3>Categorías</h3>
             <ul class="lista-categorias">
-                <li><button class="categoria-btn activa" onclick="filtrar('todas')"><span class="cat-titulo">🌟 Todas</span></button></li>
+                <li><button class="categoria-btn activa" onclick="filtrar('todas')"><span class="cat-titulo">Todas</span></button></li>
                 <li><button class="categoria-btn" onclick="filtrar('peluches')"><span class="cat-titulo">🧸 Peluches</span></button></li>
                 <li><button class="categoria-btn" onclick="filtrar('pareja')"><span class="cat-titulo">💌 Para tu pareja</span></button></li>
                 <li><button class="categoria-btn" onclick="filtrar('cumpleanos')"><span class="cat-titulo">🎂 Cumpleaños</span></button></li>
@@ -48,42 +48,49 @@
                     <h3>Caja Sorpresa</h3><p>$450.00 MXN</p>
                     <button class="btn btn-secundario" onclick="abrirDetalle('Caja Sorpresa', 450, 'Caja decorativa elaborada a mano.', 'img/manualidad1.jpeg')">Ver detalle</button>
                 </div>
+
                 <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Arreglo Especial">
                     <img src="img/manualidad2.jpeg" alt="Arreglo Especial">
                     <h3>Arreglo Especial</h3><p>$600.00 MXN</p>
                     <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', 600, 'Arreglo diseñado para momentos inolvidables.', 'img/manualidad2.jpeg')">Ver detalle</button>
                 </div>
-                <div class="producto-card item-producto" data-categoria="peluches" data-nombre="Capibara Feliz">
+
+                <div class="producto-card item-producto" data-categoria="peluches" data-nombre="Capibara crochet">
                     <span class="etiqueta etiqueta-nuevo">Nuevo</span>
-                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">🧸</div>
-                    <h3>Capibara Feliz</h3><p>$250.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara Feliz', 250, 'Peluche súper suave de capibara.', '')">Ver detalle</button>
+                    <img src="img/capibara.jpg" alt="Capibara crochet">
+                    <h3>Capibara crochet</h3><p>$250.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara crochet', 250, 'Peluche súper suave hecho de crochet de capibara.', 'img/capibara.jpg')">Ver detalle</button>
                 </div>
+
                 <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Kit Cumpleañero">
-                    <img src="img/1.png" alt="Kit">
+                    <img src="img/kit.jpg" alt="Kit Cumpleañero">
                     <h3>Kit Cumpleañero</h3><p>$350.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates.', 'img/1.png')">Ver detalle</button>
-                </div>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates. Se puede agregar lo que tu quieras poner al mismo precio.', 'img/kit.jpg')">Ver detalle</button>            
+                    </div>
+
                 <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Taza Mágica">
-                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">☕</div>
+                    <img src="img/taza.jpg" alt="Taza Mágica">
                     <h3>Taza Mágica</h3><p>$180.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente.', '')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente. Puede ser personalizada, mándanos tu imagen.', 'img/taza.jpg')">Ver detalle</button>
                 </div>
-                <div class="producto-card item-producto" data-categoria="papeleria" data-nombre="Libreta Kawaii">
+
+                <div class="producto-card item-producto" data-categoria="papeleria" data-nombre="Libreta Snoopy">
                     <span class="etiqueta etiqueta-nuevo">Nuevo</span>
-                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">📔</div>
-                    <h3>Libreta Kawaii</h3><p>$120.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Libreta Kawaii', 120, 'Libreta decorada de 100 hojas.', '')">Ver detalle</button>
+                    <img src="img/libreta1.jpg" alt="Libreta Snoopy">
+                    <h3>Libreta Snoopy</h3><p>$120.00 MXN</p>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Libreta Snoopy', 120, 'Libreta decorada de Snoopy de 100 hojas.', 'img/libreta1.jpg')">Ver detalle</button>
                 </div>
+
                 <div class="producto-card item-producto" data-categoria="cajas" data-nombre="Caja Dulce">
-                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">🎁</div>
+                    <img src="img/dulce_caja.jpg" alt="Caja Dulce">
                     <h3>Caja Dulce</h3><p>$200.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Dulce', 200, 'Surtido de chocolates finos.', '')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Dulce', 200, 'Surtido de chocolates kinder, carlos v o de tu preferencia.', 'img/dulce_caja.jpg')">Ver detalle</button>
                 </div>
+
                 <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Globo Metálico">
-                    <div style="height: 180px; background: #eee; border-radius: 8px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">🎈</div>
+                    <img src="img/globos.jpg" alt="Globo Metálico">
                     <h3>Globo Metálico</h3><p>$80.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio.', '')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio decorado o solo serigrafia.', 'img/globos.jpg')">Ver detalle</button>
                 </div>
             </div>
         </section>
@@ -178,7 +185,6 @@
         }
 
         function agregarAlCarrito() {
-            // Verificar si ya existe en el carrito para sumar cantidad
             let existente = carrito.find(p => p.nombre === prodTemp.nombre);
             if (existente) { existente.cantidad += prodTemp.cantidad; } 
             else { carrito.push({...prodTemp}); }
