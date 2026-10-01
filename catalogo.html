@@ -65,8 +65,8 @@
                 <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Kit Cumpleañero">
                     <img src="img/kit.jpg" alt="Kit Cumpleañero">
                     <h3>Kit Cumpleañero</h3><p>$350.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates. Se puede agregar lo que tu quieras poner al mismo precio.', 'img/kit.jpg')">Ver detalle</button>            
-                    </div>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates. Se puede agregar lo que tu quieras poner al mismo precio.', 'img/kit.jpg')">Ver detalle</button>
+                </div>
 
                 <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Taza Mágica">
                     <img src="img/taza.jpg" alt="Taza Mágica">
@@ -114,7 +114,13 @@
             <button class="btn btn-secundario" onclick="document.getElementById('modalDetalle').style.display='none'">Regresar</button>
             
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
-            <p style="font-size: 0.9rem; color: #666;"><strong>Productos Relacionados:</strong> Taza Mágica, Tarjeta Dedicatoria.</p>
+            
+            <!-- PRODUCTOS RELACIONADOS COMO LINKS -->
+            <p style="font-size: 0.9rem; color: #666;">
+                <strong>Productos Relacionados:</strong> 
+                <a href="#" style="color: var(--color-principal); text-decoration: underline; font-weight: bold;" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente. Puede ser personalizada, mándanos tu imagen.', 'img/taza.jpg')">Taza Mágica</a>, 
+                <a href="#" style="color: var(--color-principal); text-decoration: underline; font-weight: bold;" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio decorado o solo serigrafia.', 'img/globos.jpg')">Globo Metálico</a>.
+            </p>
         </div>
     </div>
 
@@ -122,21 +128,34 @@
     <div id="modalCarrito" class="modal-overlay">
         <div class="modal-box" style="max-width: 450px; text-align: left;">
             <h2 style="color: var(--color-principal); border-bottom: 2px solid var(--color-fondo); padding-bottom: 10px;">🛒 Mi Carrito</h2>
-            <div id="lista-carrito" style="margin: 20px 0; max-height: 300px; overflow-y: auto;"></div>
-            <h3 style="text-align: right; margin-bottom: 20px;">Total: <span id="total-carrito" style="color: var(--color-principal);">$0.00 MXN</span></h3>
+            
+            <div id="lista-carrito" style="margin: 20px 0; max-height: 250px; overflow-y: auto;"></div>
+            
+            <h3 style="text-align: right; margin-bottom: 15px;">Total: <span id="total-carrito" style="color: var(--color-principal);">$0.00 MXN</span></h3>
+            
+            <!-- TÉRMINOS Y CONDICIONES -->
+            <div style="margin-bottom: 20px; text-align: right;">
+                <label style="font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
+                    <input type="checkbox" id="terminos-checkbox" style="width: 15px; height: 15px; margin: 0; padding: 0;">
+                    Acepto los <a href="#" style="color: var(--color-principal); text-decoration: underline;" onclick="mostrarAlerta('Aquí irían los términos legales y políticas de envío.', 'Términos y Condiciones')">términos y condiciones</a>
+                </label>
+            </div>
+            
             <div style="display: flex; gap: 10px; justify-content: flex-end;">
                 <button class="btn btn-secundario" onclick="document.getElementById('modalCarrito').style.display='none'">Seguir comprando</button>
-                <button class="btn" onclick="mostrarAlerta('Checkout en construcción. ¡Paso siguiente próximamente!', 'Ir a pagar')">Ir a pagar</button>
+                <button class="btn" onclick="procesarPago()">Ir a pagar</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal Alerta Personalizada -->
+    <!-- Modal Alerta Personalizada (Modificada para soportar botones dinámicos) -->
     <div id="customAlert" class="modal-overlay">
-        <div class="modal-box" style="max-width: 350px; text-align: center;">
+        <div class="modal-box" style="max-width: 350px; text-align: center; border-radius: 10px;">
             <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
             <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5;">Mensaje</p>
-            <button class="btn" onclick="cerrarAlerta()">Aceptar</button>
+            <div id="alertBotones">
+                <button class="btn" onclick="cerrarAlerta()">Aceptar</button>
+            </div>
         </div>
     </div>
 
@@ -224,7 +243,7 @@
                             <span>${p.cantidad}</span>
                             <button onclick="modificarCantidad(${index}, 1)">+</button>
                         </div>
-                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">🗑️</button>
+                        <button class="btn-eliminar" onclick="confirmarEliminarCarrito(${index}, '${p.nombre}')">🗑️</button>
                     </div>
                 </div>`;
             });
@@ -239,9 +258,42 @@
             }
         }
 
-        function eliminarDelCarrito(index) {
+        // --- SISTEMA DE ELIMINACIÓN CON CONFIRMACIÓN ---
+        function confirmarEliminarCarrito(index, nombre) {
+            document.getElementById('alertTitulo').innerText = 'Eliminar Producto';
+            document.getElementById('alertMensaje').innerText = `¿Deseas eliminar "${nombre}" de tu carrito?`;
+            
+            // Reemplazamos los botones del modal para poner "Sí" y "No"
+            document.getElementById('alertBotones').innerHTML = `
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-secundario" style="flex:1;" onclick="cerrarAlerta()">No</button>
+                    <button class="btn btn-eliminar" style="flex:1; background:#d9534f; color:white; border:none;" onclick="ejecutarEliminarCarrito(${index})">Sí, eliminar</button>
+                </div>
+            `;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function ejecutarEliminarCarrito(index) {
             carrito.splice(index, 1);
             actualizarUI();
+            cerrarAlerta();
+        }
+
+        // --- VALIDACIÓN DE PAGO ---
+        function procesarPago() {
+            if(carrito.length === 0) {
+                mostrarAlerta('Agrega algunos regalos antes de ir a pagar.', 'Carrito Vacío');
+                return;
+            }
+            
+            // Validamos si el checkbox está marcado
+            const checkbox = document.getElementById('terminos-checkbox');
+            if (!checkbox.checked) {
+                mostrarAlerta('Debes aceptar los términos y condiciones antes de continuar con el pago.', 'Atención');
+                return;
+            }
+            
+            mostrarAlerta('Checkout en construcción. ¡Paso siguiente próximamente!', 'Ir a pagar');
         }
 
         function abrirCarrito() {
@@ -249,12 +301,17 @@
             document.getElementById('modalCarrito').style.display = 'flex';
         }
 
+        // --- ALERTAS GENÉRICAS ---
         function mostrarAlerta(mensaje, titulo = 'Aviso', accion = null) {
             document.getElementById('alertTitulo').innerText = titulo;
             document.getElementById('alertMensaje').innerText = mensaje;
+            // Restauramos el botón normal de "Aceptar"
+            document.getElementById('alertBotones').innerHTML = `<button class="btn" onclick="cerrarAlerta()">Aceptar</button>`;
+            
             document.getElementById('customAlert').style.display = 'flex';
             window.accionPostAlerta = accion;
         }
+        
         function cerrarAlerta() {
             document.getElementById('customAlert').style.display = 'none';
             if (window.accionPostAlerta) { window.accionPostAlerta(); window.accionPostAlerta = null; }
