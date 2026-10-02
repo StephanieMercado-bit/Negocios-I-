@@ -41,56 +41,56 @@
         <section class="productos-area">
             <h2 id="titulo-seccion">Todos los productos</h2>
             <div class="grid-catalogo" id="grid-productos">
-                <!-- 8 Productos Simulados -->
+                <!-- 8 Productos - Nota: Agregamos la categoría al final del onclick -->
                 <div class="producto-card item-producto" data-categoria="cajas" data-nombre="Caja Sorpresa">
                     <span class="etiqueta etiqueta-oferta">Oferta</span>
                     <img src="img/manualidad1.jpeg" alt="Caja Sorpresa">
                     <h3>Caja Sorpresa</h3><p>$450.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Sorpresa', 450, 'Caja decorativa elaborada a mano.', 'img/manualidad1.jpeg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Sorpresa', 450, 'Caja decorativa elaborada a mano.', 'img/manualidad1.jpeg', 'cajas')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Arreglo Especial">
                     <img src="img/manualidad2.jpeg" alt="Arreglo Especial">
                     <h3>Arreglo Especial</h3><p>$600.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', 600, 'Arreglo diseñado para momentos inolvidables.', 'img/manualidad2.jpeg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Arreglo Especial', 600, 'Arreglo diseñado para momentos inolvidables.', 'img/manualidad2.jpeg', 'pareja')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="peluches" data-nombre="Capibara crochet">
                     <span class="etiqueta etiqueta-nuevo">Nuevo</span>
                     <img src="img/capibara.jpg" alt="Capibara crochet">
                     <h3>Capibara crochet</h3><p>$250.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara crochet', 250, 'Peluche súper suave hecho de crochet de capibara.', 'img/capibara.jpg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Capibara crochet', 250, 'Peluche súper suave hecho de crochet de capibara.', 'img/capibara.jpg', 'peluches')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Kit Cumpleañero">
                     <img src="img/kit.jpg" alt="Kit Cumpleañero">
                     <h3>Kit Cumpleañero</h3><p>$350.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates. Se puede agregar lo que tu quieras poner al mismo precio.', 'img/kit.jpg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Kit Cumpleañero', 350, 'Incluye taza, globos y chocolates. Se puede agregar lo que tu quieras poner al mismo precio.', 'img/kit.jpg', 'cumpleanos')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="pareja" data-nombre="Taza Mágica">
                     <img src="img/taza.jpg" alt="Taza Mágica">
                     <h3>Taza Mágica</h3><p>$180.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente. Puede ser personalizada, mándanos tu imagen.', 'img/taza.jpg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente. Puede ser personalizada, mándanos tu imagen.', 'img/taza.jpg', 'pareja')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="papeleria" data-nombre="Libreta Snoopy">
                     <span class="etiqueta etiqueta-nuevo">Nuevo</span>
                     <img src="img/libreta1.jpg" alt="Libreta Snoopy">
                     <h3>Libreta Snoopy</h3><p>$120.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Libreta Snoopy', 120, 'Libreta decorada de Snoopy de 100 hojas.', 'img/libreta1.jpg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Libreta Snoopy', 120, 'Libreta decorada de Snoopy de 100 hojas.', 'img/libreta1.jpg', 'papeleria')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="cajas" data-nombre="Caja Dulce">
                     <img src="img/dulce_caja.jpg" alt="Caja Dulce">
                     <h3>Caja Dulce</h3><p>$200.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Dulce', 200, 'Surtido de chocolates kinder, carlos v o de tu preferencia.', 'img/dulce_caja.jpg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Caja Dulce', 200, 'Surtido de chocolates kinder, carlos v o de tu preferencia.', 'img/dulce_caja.jpg', 'cajas')">Ver detalle</button>
                 </div>
 
                 <div class="producto-card item-producto" data-categoria="cumpleanos" data-nombre="Globo Metálico">
                     <img src="img/globos.jpg" alt="Globo Metálico">
                     <h3>Globo Metálico</h3><p>$80.00 MXN</p>
-                    <button class="btn btn-secundario" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio decorado o solo serigrafia.', 'img/globos.jpg')">Ver detalle</button>
+                    <button class="btn btn-secundario" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio decorado o solo serigrafia.', 'img/globos.jpg', 'cumpleanos')">Ver detalle</button>
                 </div>
             </div>
         </section>
@@ -115,11 +115,10 @@
             
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
             
-            <!-- PRODUCTOS RELACIONADOS COMO LINKS -->
+            <!-- CONTENEDOR DE PRODUCTOS RELACIONADOS DINÁMICOS -->
             <p style="font-size: 0.9rem; color: #666;">
                 <strong>Productos Relacionados:</strong> 
-                <a href="#" style="color: var(--color-principal); text-decoration: underline; font-weight: bold;" onclick="abrirDetalle('Taza Mágica', 180, 'Cambia de color con agua caliente. Puede ser personalizada, mándanos tu imagen.', 'img/taza.jpg')">Taza Mágica</a>, 
-                <a href="#" style="color: var(--color-principal); text-decoration: underline; font-weight: bold;" onclick="abrirDetalle('Globo Metálico', 80, 'Globo gigante inflado con helio decorado o solo serigrafia.', 'img/globos.jpg')">Globo Metálico</a>.
+                <span id="enlaces-relacionados"></span>
             </p>
         </div>
     </div>
@@ -137,7 +136,7 @@
             <div style="margin-bottom: 20px; text-align: right;">
                 <label style="font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
                     <input type="checkbox" id="terminos-checkbox" style="width: 15px; height: 15px; margin: 0; padding: 0;">
-                    Acepto los <a href="terminos.html" style="color: var(--color-principal); text-decoration: underline;">términos y condiciones</a>
+                    Acepto los <a href="terminos.html" target="_blank" style="color: var(--color-principal); text-decoration: underline;">términos y condiciones</a>
                 </label>
             </div>
             
@@ -148,7 +147,7 @@
         </div>
     </div>
 
-    <!-- Modal Alerta Personalizada (Modificada para soportar botones dinámicos) -->
+    <!-- Modal Alerta Personalizada (Con botones dinámicos) -->
     <div id="customAlert" class="modal-overlay">
         <div class="modal-box" style="max-width: 350px; text-align: center; border-radius: 10px;">
             <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
@@ -179,11 +178,12 @@
             document.getElementById('titulo-seccion').innerText = "Resultados de búsqueda";
         }
 
-        // --- LÓGICA DE CARRITO REAL ---
+        // --- LÓGICA DE CARRITO Y DETALLE (AHORA CON RELACIONADOS DINÁMICOS) ---
         let carrito = [];
         let prodTemp = { cantidad: 1 };
 
-        function abrirDetalle(nombre, precio, desc, img) {
+        // Agregamos el parámetro "categoria"
+        function abrirDetalle(nombre, precio, desc, img, categoria) {
             prodTemp = { nombre, precio, img, cantidad: 1 };
             document.getElementById('det-nombre').innerText = nombre;
             document.getElementById('det-precio-texto').innerText = `$${precio.toFixed(2)} MXN`;
@@ -192,6 +192,41 @@
             
             const imgEl = document.getElementById('det-img');
             img ? (imgEl.src = img, imgEl.style.display = 'block') : imgEl.style.display = 'none';
+
+            // GENERAR PRODUCTOS RELACIONADOS DINÁMICAMENTE
+            let relacionadosHTML = '';
+            let agregados = 0;
+            let todosLosProductos = document.querySelectorAll('.item-producto');
+
+            // 1. Buscar productos de la misma categoría
+            todosLosProductos.forEach(prod => {
+                let catProd = prod.getAttribute('data-categoria');
+                let nomProd = prod.getAttribute('data-nombre');
+                
+                // Si es de la misma categoría, no es el actual, y no llevamos más de 2
+                if (catProd === categoria && nomProd !== nombre && agregados < 2) {
+                    let btn = prod.querySelector('.btn-secundario');
+                    let onclickText = btn.getAttribute('onclick');
+                    
+                    relacionadosHTML += `<a href="#" style="color: var(--color-principal); text-decoration: underline; font-weight: bold; margin-right: 10px;" onclick="${onclickText}">${nomProd}</a>`;
+                    agregados++;
+                }
+            });
+
+            // 2. Si la categoría tiene menos de 2 opciones, rellenamos con otros productos al azar
+            if (agregados < 2) {
+                todosLosProductos.forEach(prod => {
+                    let nomProd = prod.getAttribute('data-nombre');
+                    if (nomProd !== nombre && agregados < 2 && !relacionadosHTML.includes(nomProd)) {
+                        let btn = prod.querySelector('.btn-secundario');
+                        let onclickText = btn.getAttribute('onclick');
+                        relacionadosHTML += `<a href="#" style="color: var(--color-principal); text-decoration: underline; font-weight: bold; margin-right: 10px;" onclick="${onclickText}">${nomProd}</a>`;
+                        agregados++;
+                    }
+                });
+            }
+
+            document.getElementById('enlaces-relacionados').innerHTML = relacionadosHTML;
             document.getElementById('modalDetalle').style.display = 'flex';
         }
 
@@ -263,7 +298,6 @@
             document.getElementById('alertTitulo').innerText = 'Eliminar Producto';
             document.getElementById('alertMensaje').innerText = `¿Deseas eliminar "${nombre}" de tu carrito?`;
             
-            // Reemplazamos los botones del modal para poner "Sí" y "No"
             document.getElementById('alertBotones').innerHTML = `
                 <div style="display:flex; gap:10px;">
                     <button class="btn btn-secundario" style="flex:1;" onclick="cerrarAlerta()">No</button>
@@ -286,7 +320,6 @@
                 return;
             }
             
-            // Validamos si el checkbox está marcado
             const checkbox = document.getElementById('terminos-checkbox');
             if (!checkbox.checked) {
                 mostrarAlerta('Debes aceptar los términos y condiciones antes de continuar con el pago.', 'Atención');
@@ -305,7 +338,6 @@
         function mostrarAlerta(mensaje, titulo = 'Aviso', accion = null) {
             document.getElementById('alertTitulo').innerText = titulo;
             document.getElementById('alertMensaje').innerText = mensaje;
-            // Restauramos el botón normal de "Aceptar"
             document.getElementById('alertBotones').innerHTML = `<button class="btn" onclick="cerrarAlerta()">Aceptar</button>`;
             
             document.getElementById('customAlert').style.display = 'flex';
