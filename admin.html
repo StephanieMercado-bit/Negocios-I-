@@ -6,7 +6,7 @@
     <title>Panel Administrador | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body style="background: none;"> 
+<body style="background: none; position: relative; min-height: 100vh;"> 
 
     <div class="admin-layout">
         
@@ -83,12 +83,12 @@
                 <!-- Vista Gestión de Productos -->
                 <section id="sec-productos" style="display: none;">
                     <div class="tabla-contenedor" style="overflow-x: auto;">
+                        
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
                             <h2 style="color: #2c3e50; margin: 0;">Catálogo de Productos</h2>
-                            <button class="btn" onclick="abrirModalProducto('nuevo')">+ Nuevo Producto</button>
                         </div>
 
-                        <table class="admin-tabla" style="min-width: 600px;">
+                        <table class="admin-tabla" style="min-width: 600px; width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Imagen</th>
@@ -102,98 +102,98 @@
                             <tbody>
                                 <!-- Producto 1 -->
                                 <tr>
-                                    <td><img src="img/manualidad1.jpeg" alt="Caja"></td>
+                                    <td><img src="img/manualidad1.jpeg" alt="Caja" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Caja Sorpresa</strong><br><small style="color: #888;">ID: #PROD-001</small></td>
                                     <td>Cajas</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$450.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Caja Sorpresa', 450, 'Cajas')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Caja Sorpresa')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Caja Sorpresa')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 2 -->
                                 <tr>
-                                    <td><img src="img/manualidad2.jpeg" alt="Arreglo"></td>
+                                    <td><img src="img/manualidad2.jpeg" alt="Arreglo" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Arreglo Especial</strong><br><small style="color: #888;">ID: #PROD-002</small></td>
                                     <td>Pareja</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$600.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Arreglo Especial', 600, 'Pareja')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Arreglo Especial')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Arreglo Especial')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 3 -->
                                 <tr>
-                                    <td><img src="img/capibara.jpg" alt="Capibara"></td>
+                                    <td><img src="img/capibara.jpg" alt="Capibara" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Capibara crochet</strong><br><small style="color: #888;">ID: #PROD-003</small></td>
                                     <td>Peluches</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$250.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Capibara crochet', 250, 'Peluches')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Capibara crochet')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Capibara crochet')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 4 -->
                                 <tr>
-                                    <td><img src="img/kit.jpg" alt="Kit"></td>
+                                    <td><img src="img/kit.jpg" alt="Kit" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Kit Cumpleañero</strong><br><small style="color: #888;">ID: #PROD-004</small></td>
                                     <td>Cumpleaños</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$350.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Kit Cumpleañero', 350, 'Cumpleanos')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Kit Cumpleañero')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Kit Cumpleañero')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 5 -->
                                 <tr>
-                                    <td><img src="img/taza.jpg" alt="Taza"></td>
+                                    <td><img src="img/taza.jpg" alt="Taza" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Taza Mágica</strong><br><small style="color: #888;">ID: #PROD-005</small></td>
                                     <td>Pareja</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$180.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Taza Mágica', 180, 'Pareja')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Taza Mágica')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Taza Mágica')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 6 -->
                                 <tr>
-                                    <td><img src="img/libreta1.jpg" alt="Libreta"></td>
+                                    <td><img src="img/libreta1.jpg" alt="Libreta" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Libreta Snoopy</strong><br><small style="color: #888;">ID: #PROD-006</small></td>
                                     <td>Papelería</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$120.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Libreta Snoopy', 120, 'Papeleria')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Libreta Snoopy')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Libreta Snoopy')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 7 -->
                                 <tr>
-                                    <td><img src="img/dulce_caja.jpg" alt="Caja Dulce"></td>
+                                    <td><img src="img/dulce_caja.jpg" alt="Caja Dulce" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Caja Dulce</strong><br><small style="color: #888;">ID: #PROD-007</small></td>
                                     <td>Cajas</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$200.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Caja Dulce', 200, 'Cajas')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Caja Dulce')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Caja Dulce')">🗑️</button>
                                     </td>
                                 </tr>
                                 <!-- Producto 8 -->
                                 <tr>
-                                    <td><img src="img/globos.jpg" alt="Globo"></td>
+                                    <td><img src="img/globos.jpg" alt="Globo" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);"></td>
                                     <td><strong>Globo Metálico</strong><br><small style="color: #888;">ID: #PROD-008</small></td>
                                     <td>Cumpleaños</td>
-                                    <td><span class="badge-activo">Activo</span></td>
+                                    <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
                                     <td><strong>$80.00</strong></td>
                                     <td>
                                         <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', 'Globo Metálico', 80, 'Cumpleanos')">✏️</button>
-                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem;" onclick="confirmarEliminar('Globo Metálico')">🗑️</button>
+                                        <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('Globo Metálico')">🗑️</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -205,45 +205,54 @@
         </main>
     </div>
 
+    <!-- BOTÓN FLOTANTE SIEMPRE VISIBLE -->
+    <button onclick="abrirModalProducto('nuevo')" style="position: fixed; bottom: 30px; right: 30px; background-color: #28a745; color: white; border: none; border-radius: 50px; padding: 15px 25px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 9999;">
+        + Agregar Producto
+    </button>
+
     <!-- Modales -->
-    <div id="modalFormProducto" class="modal-overlay">
-        <div class="modal-box" style="max-width: 450px; text-align: left; border-radius: 15px;">
-            <h2 id="modalFormTitulo" style="color: var(--color-principal); margin-bottom: 20px;">Agregar Producto</h2>
+    <div id="modalFormProducto" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:25px; max-width: 450px; width:90%; text-align: left; border-radius: 15px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+            <h2 id="modalFormTitulo" style="color: #2c3e50; margin-bottom: 20px;">Agregar Producto</h2>
             <form id="formProductoAdmin">
+                
+                <label style="font-weight: bold; font-size: 0.9rem; color: #555; display: block; margin-bottom: 5px;">📷 Imagen del Producto</label>
+                <input type="file" id="admin-prod-imagen" accept="image/*" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px dashed #cbd5e1; border-radius: 8px; background-color: #f8fafc; color: #64748b; cursor: pointer; font-size: 0.9rem; outline: none; box-sizing:border-box;">
+
                 <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Nombre del Producto</label>
-                <input type="text" id="admin-prod-nombre" required style="width: 100%; margin-bottom: 15px; margin-top: 5px;">
+                <input type="text" id="admin-prod-nombre" required style="width: 100%; padding:10px; margin-bottom: 15px; margin-top: 5px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;">
                 
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                     <div style="flex: 1; min-width: 150px;">
                         <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Precio ($)</label>
-                        <input type="number" id="admin-prod-precio" required style="width: 100%; margin-bottom: 15px; margin-top: 5px;">
+                        <input type="number" id="admin-prod-precio" required style="width: 100%; padding:10px; margin-bottom: 15px; margin-top: 5px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;">
                     </div>
                     <div style="flex: 1; min-width: 150px;">
                         <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Categoría</label>
-                        <select id="admin-prod-categoria" style="width: 100%; padding: 12px; margin-bottom: 15px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
+                        <select id="admin-prod-categoria" style="width: 100%; padding: 10px; margin-bottom: 15px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; box-sizing:border-box;">
                             <option value="Cajas">Cajas sorpresa</option>
                             <option value="Pareja">Para tu pareja</option>
                             <option value="Peluches">Peluches</option>
                             <option value="Cumpleanos">Cumpleaños</option>
-                            <option value="Papeleria">Papelería</option> <!-- Agregado -->
+                            <option value="Papeleria">Papelería</option>
                         </select>
                     </div>
                 </div>
                 
                 <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
-                    <button type="button" class="btn btn-secundario" onclick="document.getElementById('modalFormProducto').style.display='none'">Cancelar</button>
-                    <button type="submit" class="btn">Guardar Cambios</button>
+                    <button type="button" onclick="document.getElementById('modalFormProducto').style.display='none'" style="padding:10px 15px; border:none; background:#ccc; border-radius:5px; cursor:pointer;">Cancelar</button>
+                    <button type="submit" style="padding:10px 15px; border:none; background:#28a745; color:white; border-radius:5px; font-weight:bold; cursor:pointer;">Guardar Cambios</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="customAlert" class="modal-overlay">
-        <div class="modal-box" style="max-width: 350px; text-align: center; border-radius: 15px;">
-            <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
+    <div id="customAlert" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:20px; max-width: 350px; width:90%; text-align: center; border-radius: 15px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+            <h3 id="alertTitulo" style="color: #2c3e50; margin-bottom: 15px;">Aviso</h3>
             <p id="alertMensaje" style="margin-bottom: 25px; line-height: 1.5; color: #555;">Mensaje</p>
             <div id="alertBotones">
-                <button class="btn" style="width: 100%;" onclick="cerrarAlerta()">Aceptar</button>
+                <button style="width: 100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="cerrarAlerta()">Aceptar</button>
             </div>
         </div>
     </div>
@@ -263,13 +272,60 @@
             document.getElementById('admin-prod-nombre').value = nombre;
             document.getElementById('admin-prod-precio').value = precio;
             document.getElementById('admin-prod-categoria').value = categoria;
+            document.getElementById('admin-prod-imagen').value = ''; // Limpia el archivo anterior
             document.getElementById('modalFormProducto').style.display = 'flex';
         }
 
         document.getElementById('formProductoAdmin').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            const nombre = document.getElementById('admin-prod-nombre').value;
+            const precio = parseFloat(document.getElementById('admin-prod-precio').value).toFixed(2);
+            const categoriaSelect = document.getElementById('admin-prod-categoria');
+            const categoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+            const categoriaValor = categoriaSelect.value;
+            const inputImagen = document.getElementById('admin-prod-imagen');
+            const tituloModal = document.getElementById('modalFormTitulo').innerText;
+            
+            if (tituloModal.includes('Nuevo')) {
+                const tbody = document.querySelector('.admin-tabla tbody');
+                const nuevoId = '#PROD-' + Math.floor(Math.random() * 900 + 100);
+                
+                const crearFila = (imgSrc) => {
+                    const nuevaFila = document.createElement('tr');
+                    
+                    let imgHTML = imgSrc 
+                        ? `<img src="${imgSrc}" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); display: block;">`
+                        : `<div style="width: 75px; height: 75px; background-color: #f1f5f9; border: 1px dashed #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #94a3b8;">📦</div>`;
+                        
+                    nuevaFila.innerHTML = `
+                        <td>${imgHTML}</td>
+                        <td><strong>${nombre}</strong><br><small style="color: #888;">ID: ${nuevoId}</small></td>
+                        <td>${categoria}</td>
+                        <td><span class="badge-activo" style="background:#d4edda; color:#155724; padding:4px 8px; border-radius:4px;">Activo</span></td>
+                        <td><strong>$${precio}</strong></td>
+                        <td>
+                            <button class="btn-secundario" style="padding: 6px 12px; font-size: 0.9rem;" onclick="abrirModalProducto('editar', '${nombre}', ${precio}, '${categoriaValor}')">✏️</button>
+                            <button class="btn-eliminar" style="padding: 6px 12px; font-size: 0.9rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="confirmarEliminar('${nombre}')">🗑️</button>
+                        </td>
+                    `;
+                    tbody.prepend(nuevaFila); 
+                };
+
+                if (inputImagen.files && inputImagen.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(evento) {
+                        crearFila(evento.target.result);
+                    }
+                    reader.readAsDataURL(inputImagen.files[0]);
+                } else {
+                    crearFila(null);
+                }
+            }
+
             document.getElementById('modalFormProducto').style.display = 'none';
-            mostrarAlerta('Los cambios en el catálogo se han guardado exitosamente (Simulación).', '¡Guardado!');
+            document.getElementById('formProductoAdmin').reset();
+            mostrarAlerta(`El producto "${nombre}" se ha guardado exitosamente.`, '¡Guardado!');
         });
 
         function confirmarEliminar(nombre) {
@@ -278,8 +334,8 @@
             
             document.getElementById('alertBotones').innerHTML = `
                 <div style="display:flex; gap:10px;">
-                    <button class="btn btn-secundario" style="flex:1;" onclick="cerrarAlerta()">Cancelar</button>
-                    <button class="btn btn-eliminar" style="flex:1; background:#d9534f;" onclick="ejecutarEliminar()">Eliminar</button>
+                    <button style="flex:1; padding:10px; background:#ccc; border:none; border-radius:5px; cursor:pointer;" onclick="cerrarAlerta()">Cancelar</button>
+                    <button style="flex:1; padding:10px; background:#d9534f; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="ejecutarEliminar()">Eliminar</button>
                 </div>
             `;
             document.getElementById('customAlert').style.display = 'flex';
@@ -293,7 +349,7 @@
         function mostrarAlerta(mensaje, titulo = 'Aviso') {
             document.getElementById('alertTitulo').innerText = titulo;
             document.getElementById('alertMensaje').innerText = mensaje;
-            document.getElementById('alertBotones').innerHTML = `<button class="btn" style="width: 100%;" onclick="cerrarAlerta()">Entendido</button>`;
+            document.getElementById('alertBotones').innerHTML = `<button style="width: 100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="cerrarAlerta()">Entendido</button>`;
             document.getElementById('customAlert').style.display = 'flex';
         }
 
