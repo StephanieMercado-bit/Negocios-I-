@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrador | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos rápidos para las tarjetas de publicaciones */
+        .admin-pub-card { background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .admin-pub-card h4 { margin-top: 0; color: #2c3e50; }
+        .admin-pub-card p { color: #555; font-size: 0.95rem; }
+        .admin-pub-card small { color: #888; display: block; margin-bottom: 10px; }
+    </style>
 </head>
 <body style="background: none; position: relative; min-height: 100vh;"> 
 
@@ -21,7 +28,9 @@
                 <button class="activo" onclick="navegarAdmin('dashboard', this)">📊 Dashboard</button>
                 <button onclick="navegarAdmin('productos', this)">📦 Productos</button>
                 <button onclick="mostrarAlerta('Sección de Pedidos en desarrollo.')">🛍️ Pedidos</button>
-                <button onclick="mostrarAlerta('Sección de Promociones en desarrollo.')">🎟️ Promociones</button>
+                <button onclick="navegarAdmin('promociones', this)">🎟️ Promociones</button>
+                <button onclick="navegarAdmin('resenas', this)">⭐ Reseñas</button>
+                <button onclick="navegarAdmin('publicaciones', this)">📢 Publicaciones</button>
             </div>
             
             <div style="padding: 20px;">
@@ -201,6 +210,70 @@
                     </div>
                 </section>
 
+                <!-- 1. VISTA GESTIÓN DE PROMOCIONES (CUPONES) -->
+                <section id="sec-promociones" style="display: none;">
+                    <div class="tabla-contenedor">
+                        <h2 style="color: #2c3e50; margin-bottom: 20px;">Gestión de Cupones y Promociones</h2>
+                        
+                        <form onsubmit="guardarNuevoCupon(event)" style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Código del Cupón</label>
+                                <input type="text" id="cupCodigo" placeholder="Ej. AMOR2026" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px;">
+                            </div>
+                            <div style="flex: 1; min-width: 200px;">
+                                <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Descuento (%)</label>
+                                <input type="number" id="cupDescuento" placeholder="Ej. 15" min="1" max="100" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px;">
+                            </div>
+                            <button type="submit" class="btn" style="padding: 11px 20px;">Crear Cupón</button>
+                        </form>
+
+                        <table class="admin-tabla" style="width: 100%;">
+                            <thead>
+                                <tr><th>Código</th><th>Descuento</th><th>Estado</th><th>Acciones</th></tr>
+                            </thead>
+                            <tbody id="tablaCupones">
+                                <!-- Se llena con JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 2. VISTA MODERACIÓN DE RESEÑAS -->
+                <section id="sec-resenas" style="display: none;">
+                    <div class="tabla-contenedor">
+                        <h2 style="color: #2c3e50; margin-bottom: 20px;">Moderación de Reseñas</h2>
+                        <table class="admin-tabla" style="width: 100%;">
+                            <thead>
+                                <tr><th>Usuario</th><th>Calificación</th><th>Comentario</th><th>Origen</th><th>Acciones</th></tr>
+                            </thead>
+                            <tbody id="tablaResenasAdmin">
+                                <!-- Se llena con JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 3. VISTA CONTROL DE PUBLICACIONES (NOVEDADES) -->
+                <section id="sec-publicaciones" style="display: none;">
+                    <div class="tabla-contenedor">
+                        <h2 style="color: #2c3e50; margin-bottom: 20px;">Publicaciones y Novedades</h2>
+                        
+                        <form onsubmit="guardarPublicacion(event)" style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Título</label>
+                            <input type="text" id="pubTitulo" placeholder="Ej. ¡Llegó la nueva colección de San Valentín!" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px; margin-bottom: 15px;">
+                            
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #555;">Contenido</label>
+                            <textarea id="pubCuerpo" placeholder="Escribe los detalles de la noticia o estrategia..." required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px; margin-bottom: 15px; min-height: 80px;"></textarea>
+                            
+                            <button type="submit" class="btn">Publicar Novedad</button>
+                        </form>
+
+                        <div id="contenedorPublicacionesAdmin">
+                            <!-- Se llena con JS -->
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
     </div>
@@ -257,22 +330,33 @@
         </div>
     </div>
 
+    <!-- SCRIPT PRINCIPAL -->
     <script>
+        // Navegación del Panel de Control
         function navegarAdmin(seccionId, botonSeleccionado) {
             document.getElementById('sec-dashboard').style.display = 'none';
             document.getElementById('sec-productos').style.display = 'none';
+            document.getElementById('sec-promociones').style.display = 'none';
+            document.getElementById('sec-resenas').style.display = 'none';
+            document.getElementById('sec-publicaciones').style.display = 'none';
+            
             document.getElementById('sec-' + seccionId).style.display = 'block';
             
             document.querySelectorAll('.admin-menu button').forEach(btn => btn.classList.remove('activo'));
             botonSeleccionado.classList.add('activo');
+
+            if(seccionId === 'promociones') listarCuponesAdmin();
+            if(seccionId === 'resenas') listarResenasAdmin();
+            if(seccionId === 'publicaciones') listarPublicacionesAdmin();
         }
 
+        /* LÓGICA ORIGINAL DE PRODUCTOS */
         function abrirModalProducto(modo, nombre = '', precio = '', categoria = 'Cajas') {
             document.getElementById('modalFormTitulo').innerText = modo === 'nuevo' ? '✨ Nuevo Producto' : '✏️ Editar Producto';
             document.getElementById('admin-prod-nombre').value = nombre;
             document.getElementById('admin-prod-precio').value = precio;
             document.getElementById('admin-prod-categoria').value = categoria;
-            document.getElementById('admin-prod-imagen').value = ''; // Limpia el archivo anterior
+            document.getElementById('admin-prod-imagen').value = ''; 
             document.getElementById('modalFormProducto').style.display = 'flex';
         }
 
@@ -293,7 +377,6 @@
                 
                 const crearFila = (imgSrc) => {
                     const nuevaFila = document.createElement('tr');
-                    
                     let imgHTML = imgSrc 
                         ? `<img src="${imgSrc}" style="width: 75px; height: 75px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); display: block;">`
                         : `<div style="width: 75px; height: 75px; background-color: #f1f5f9; border: 1px dashed #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #94a3b8;">📦</div>`;
@@ -314,15 +397,12 @@
 
                 if (inputImagen.files && inputImagen.files[0]) {
                     const reader = new FileReader();
-                    reader.onload = function(evento) {
-                        crearFila(evento.target.result);
-                    }
+                    reader.onload = function(evento) { crearFila(evento.target.result); }
                     reader.readAsDataURL(inputImagen.files[0]);
                 } else {
                     crearFila(null);
                 }
             }
-
             document.getElementById('modalFormProducto').style.display = 'none';
             document.getElementById('formProductoAdmin').reset();
             mostrarAlerta(`El producto "${nombre}" se ha guardado exitosamente.`, '¡Guardado!');
@@ -346,6 +426,123 @@
             setTimeout(() => { mostrarAlerta('El producto ha sido eliminado del sistema.', 'Eliminado'); }, 300);
         }
 
+        /* LÓGICA DE PROMOCIONES (CUPONES) */
+        function guardarNuevoCupon(e) {
+            e.preventDefault();
+            const codigo = document.getElementById('cupCodigo').value.toUpperCase().trim();
+            const descuento = document.getElementById('cupDescuento').value;
+
+            const cupones = JSON.parse(localStorage.getItem('cupones') || '[]');
+            cupones.push({ id: Date.now(), codigo, descuento, activo: true });
+            localStorage.setItem('cupones', JSON.stringify(cupones));
+
+            e.target.reset();
+            mostrarAlerta(`Cupón ${codigo} creado con ${descuento}% de descuento.`, 'Éxito');
+            listarCuponesAdmin();
+        }
+
+        function listarCuponesAdmin() {
+            const cupones = JSON.parse(localStorage.getItem('cupones') || '[]');
+            const tbody = document.getElementById('tablaCupones');
+            if (cupones.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:15px; color:#888;">No hay cupones registrados.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = cupones.map(c => `
+                <tr>
+                    <td><strong>${c.codigo}</strong></td>
+                    <td>${c.descuento}%</td>
+                    <td><span class="${c.activo ? 'badge-activo' : ''}" style="background:${c.activo ? '#d4edda' : '#f8d7da'}; color:${c.activo ? '#155724' : '#721c24'}; padding:4px 8px; border-radius:4px;">${c.activo ? 'Activo' : 'Inactivo'}</span></td>
+                    <td>
+                        <button class="btn-secundario" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleEstadoCupon(${c.id})">${c.activo ? 'Desactivar' : 'Activar'}</button>
+                        <button class="btn-eliminar" style="padding: 5px 10px; font-size: 0.8rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="eliminarCuponAdmin(${c.id})">Borrar</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function toggleEstadoCupon(id) {
+            let cupones = JSON.parse(localStorage.getItem('cupones') || '[]');
+            cupones = cupones.map(c => c.id === id ? { ...c, activo: !c.activo } : c);
+            localStorage.setItem('cupones', JSON.stringify(cupones));
+            listarCuponesAdmin();
+        }
+
+        function eliminarCuponAdmin(id) {
+            let cupones = JSON.parse(localStorage.getItem('cupones') || '[]');
+            cupones = cupones.filter(c => c.id !== id);
+            localStorage.setItem('cupones', JSON.stringify(cupones));
+            listarCuponesAdmin();
+        }
+
+        /* LÓGICA DE MODERACIÓN DE RESEÑAS */
+        function listarResenasAdmin() {
+            const resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
+            const tbody = document.getElementById('tablaResenasAdmin');
+            if (resenas.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:15px; color:#888;">No hay reseñas publicadas.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = resenas.map(r => `
+                <tr>
+                    <td>${r.usuarioNombre}<br><small style="color:#888;">${r.usuarioEmail}</small></td>
+                    <td style="color:#f45b55; font-size:1.2rem;">${'&#9733;'.repeat(r.estrellas)}${'&#9734;'.repeat(5 - r.estrellas)}</td>
+                    <td>"${r.comentario}"</td>
+                    <td><small style="background:#e2e8f0; padding:3px 6px; border-radius:4px;">${r.origen || 'General'}</small></td>
+                    <td><button class="btn-eliminar" style="padding: 5px 10px; font-size: 0.8rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="eliminarResenaAdmin(${r.id})">Eliminar</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function eliminarResenaAdmin(id) {
+            let resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
+            resenas = resenas.filter(r => r.id !== id);
+            localStorage.setItem('resenas', JSON.stringify(resenas));
+            listarResenasAdmin();
+        }
+
+        /* LÓGICA DE PUBLICACIONES / NOVEDADES */
+        function guardarPublicacion(e) {
+            e.preventDefault();
+            const titulo = document.getElementById('pubTitulo').value.trim();
+            const cuerpo = document.getElementById('pubCuerpo').value.trim();
+            const publicaciones = JSON.parse(localStorage.getItem('publicaciones') || '[]');
+            publicaciones.push({ id: Date.now(), titulo, cuerpo, fecha: new Date().toLocaleDateString() });
+            localStorage.setItem('publicaciones', JSON.stringify(publicaciones));
+            e.target.reset();
+            mostrarAlerta('Novedad publicada correctamente en el sistema.', 'Publicado');
+            listarPublicacionesAdmin();
+        }
+
+        function listarPublicacionesAdmin() {
+            const publicaciones = JSON.parse(localStorage.getItem('publicaciones') || '[]');
+            const div = document.getElementById('contenedorPublicacionesAdmin');
+            if (publicaciones.length === 0) {
+                div.innerHTML = '<p style="color:#888;">Aún no has escrito ninguna publicación.</p>';
+                return;
+            }
+            div.innerHTML = publicaciones.slice().reverse().map(p => `
+                <div class="admin-pub-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <h4>${p.titulo}</h4>
+                            <small>📅 Publicado el: ${p.fecha}</small>
+                        </div>
+                        <button class="btn-eliminar" style="padding: 5px 10px; font-size: 0.8rem; background:#d9534f; color:white; border:none; border-radius:4px;" onclick="eliminarPublicacionAdmin(${p.id})">Borrar</button>
+                    </div>
+                    <p>${p.cuerpo}</p>
+                </div>
+            `).join('');
+        }
+
+        function eliminarPublicacionAdmin(id) {
+            let publicaciones = JSON.parse(localStorage.getItem('publicaciones') || '[]');
+            publicaciones = publicaciones.filter(p => p.id !== id);
+            localStorage.setItem('publicaciones', JSON.stringify(publicaciones));
+            listarPublicacionesAdmin();
+        }
+
+        /* ALERTAS */
         function mostrarAlerta(mensaje, titulo = 'Aviso') {
             document.getElementById('alertTitulo').innerText = titulo;
             document.getElementById('alertMensaje').innerText = mensaje;
