@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil | Env&Star</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .rating-stars .star { font-size: 30px; cursor: pointer; color: #ccc; transition: color 0.2s; }
+        .rating-stars .star:hover { color: #f05a50; }
+        .btn-accion { padding: 6px 12px; font-size: 0.85rem; border-radius: 4px; cursor: pointer; border: none; font-weight: bold; }
+        .btn-editar { background: #e2e8f0; color: #333; }
+        .btn-borrar { background: #d9534f; color: white; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -24,7 +31,6 @@
         <section class="tarjeta-seccion" style="max-width: 700px;">
             <h2>Mi Panel</h2>
             
-            <!-- Tarjeta de Info del Usuario -->
             <div style="background: var(--color-fondo, #fde2e1); padding: 25px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; text-align: left;">
                 <div>
                     <h3 id="perfil-nombre" style="margin-bottom: 5px; font-size: 1.5rem; color: #333;">¡Hola!</h3>
@@ -33,7 +39,6 @@
                 <button class="btn btn-secundario" style="margin-top: 0;" onclick="mostrarAlerta('Se abriría un formulario para cambiar tu foto, nombre y contraseña.', '✏️ Editar Perfil')">Editar perfil</button>
             </div>
             
-            <!-- Botones de Acción -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
                 <button class="btn btn-secundario" onclick="mostrarAlerta('Aquí verás el estado de tus regalos en tránsito.', '🛍️ Mis compras')">Mis compras</button>
                 <button class="btn btn-secundario" onclick="mostrarAlerta('Gestión de domicilios para entregas sorpresa.', '📍 Mis Direcciones')">Mis Direcciones</button>
@@ -41,50 +46,96 @@
                 <button class="btn btn-secundario" onclick="mostrarAlerta('Tus artículos favoritos para futuras compras.', '❤️ Lista de deseos')">Lista de deseos</button>
             </div>
 
-            <!-- SECCIÓN 1: MIS RESEÑAS (Estrellas) -->
+            <!-- SECCIÓN 1: MIS RESEÑAS -->
             <div style="background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 30px; text-align: left;">
                 <h3 style="color: #333; margin-top: 0; border-bottom: 2px solid #fde2e1; padding-bottom: 10px;">Mis Reseñas Realizadas</h3>
-                <div id="lista-mis-resenas" style="display: grid; gap: 15px; margin-top: 15px;">
-                    <!-- Se llena automáticamente con JS -->
-                </div>
+                <div id="lista-mis-resenas" style="display: grid; gap: 15px; margin-top: 15px;"></div>
             </div>
 
-            <!-- SECCIÓN 2: MIS COMENTARIOS (Comunidad) -->
+            <!-- SECCIÓN 2: MIS COMENTARIOS -->
             <div style="background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 30px; text-align: left;">
                 <h3 style="color: #333; margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Mis Comentarios en la Comunidad</h3>
-                <div id="lista-mis-comentarios" style="display: grid; gap: 15px; margin-top: 15px;">
-                    <!-- Se llena automáticamente con JS -->
-                </div>
+                <div id="lista-mis-comentarios" style="display: grid; gap: 15px; margin-top: 15px;"></div>
             </div>
             
-            <a href="#" class="btn" style="background-color: #d9534f;" onclick="mostrarAlerta('¿Estás seguro que deseas cerrar sesión?', 'Cerrar Sesión', () => { window.location.href='index.html'; localStorage.removeItem('envStarUser'); localStorage.removeItem('envStarCorreo'); })">Cerrar sesión</a>
+            <a href="#" class="btn" style="background-color: #d9534f;" onclick="mostrarConfirmacion('¿Estás seguro que deseas cerrar sesión?', () => { window.location.href='index.html'; localStorage.removeItem('envStarUser'); localStorage.removeItem('envStarCorreo'); })">Cerrar sesión</a>
         </section>
     </main>
 
-    <!-- Modal Alerta Personalizada -->
-    <div id="customAlert" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
-        <div class="modal-box" style="background:white; padding:20px; max-width: 350px; text-align: center; border-radius: 15px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
-            <h3 id="alertTitulo" style="color: #f05a50; margin-bottom: 15px;">Aviso</h3>
-            <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5; color:#555;">Mensaje</p>
-            <button class="btn" style="width:100%; background:#28a745; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;" onclick="cerrarAlerta()">Aceptar</button>
+    <!-- MODALES DE EDICIÓN -->
+    <!-- Modal Editar Reseña -->
+    <div id="modalEditarResena" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:25px; max-width: 400px; width:90%; text-align: left; border-radius: 15px;">
+            <h3 style="color: #f05a50; margin-top: 0;">Editar Reseña</h3>
+            <div class="rating-stars" id="edit-estrellas-resena" style="margin-bottom: 15px;">
+                <span class="star" onclick="seleccionarEstrellaEdit(1)">&#9733;</span>
+                <span class="star" onclick="seleccionarEstrellaEdit(2)">&#9733;</span>
+                <span class="star" onclick="seleccionarEstrellaEdit(3)">&#9733;</span>
+                <span class="star" onclick="seleccionarEstrellaEdit(4)">&#9733;</span>
+                <span class="star" onclick="seleccionarEstrellaEdit(5)">&#9733;</span>
+            </div>
+            <textarea id="edit-texto-resena" rows="3" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc; margin-bottom:15px; box-sizing:border-box;"></textarea>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-secundario" style="flex:1;" onclick="cerrarModal('modalEditarResena')">Cancelar</button>
+                <button class="btn" style="flex:1; background:#28a745;" onclick="guardarEdicionResena()">Guardar</button>
+            </div>
         </div>
     </div>
 
-    <!-- Script Principal -->
+    <!-- Modal Editar Comentario -->
+    <div id="modalEditarComentario" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:25px; max-width: 400px; width:90%; text-align: left; border-radius: 15px;">
+            <h3 style="color: #28a745; margin-top: 0;">Editar Comentario</h3>
+            <textarea id="edit-texto-comentario" rows="3" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc; margin-bottom:15px; box-sizing:border-box;"></textarea>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-secundario" style="flex:1;" onclick="cerrarModal('modalEditarComentario')">Cancelar</button>
+                <button class="btn" style="flex:1; background:#28a745;" onclick="guardarEdicionComentario()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación General -->
+    <div id="modalConfirmacion" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:20px; max-width: 350px; text-align: center; border-radius: 15px;">
+            <h3 style="color: #f05a50; margin-top:0;">⚠️ Confirmar Acción</h3>
+            <p id="confirmMensaje" style="margin-bottom: 20px; line-height: 1.5; color:#555;">¿Estás seguro?</p>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-secundario" style="flex:1;" onclick="ejecutarConfirmacion(false)">Cancelar</button>
+                <button class="btn" style="flex:1; background:#d9534f;" onclick="ejecutarConfirmacion(true)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Alerta Simple -->
+    <div id="customAlert" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:20px; max-width: 350px; text-align: center; border-radius: 15px;">
+            <h3 id="alertTitulo" style="color: #f05a50; margin-bottom: 15px;">Aviso</h3>
+            <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5; color:#555;">Mensaje</p>
+            <button class="btn" style="width:100%; background:#28a745;" onclick="document.getElementById('customAlert').style.display='none'">Aceptar</button>
+        </div>
+    </div>
+
     <script>
-        function mostrarAlerta(mensaje, titulo = 'Aviso', accion = null) {
+        // Utilidades
+        function mostrarAlerta(mensaje, titulo = 'Aviso') {
             document.getElementById('alertTitulo').innerText = titulo;
             document.getElementById('alertMensaje').innerText = mensaje;
             document.getElementById('customAlert').style.display = 'flex';
-            window.accionPostAlerta = accion;
         }
 
-        function cerrarAlerta() {
-            document.getElementById('customAlert').style.display = 'none';
-            if (window.accionPostAlerta) {
-                window.accionPostAlerta();
-                window.accionPostAlerta = null;
-            }
+        function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
+        
+        let callbackConfirmacion = null;
+        function mostrarConfirmacion(mensaje, callback) {
+            document.getElementById('confirmMensaje').innerText = mensaje;
+            document.getElementById('modalConfirmacion').style.display = 'flex';
+            callbackConfirmacion = callback;
+        }
+
+        function ejecutarConfirmacion(acepta) {
+            document.getElementById('modalConfirmacion').style.display = 'none';
+            if(acepta && callbackConfirmacion) callbackConfirmacion();
+            callbackConfirmacion = null;
         }
 
         function cerrarSesion() {
@@ -92,7 +143,10 @@
             localStorage.removeItem('envStarCorreo');
         }
 
-        // Leer Reseñas (Con Estrellas)
+        // --- LÓGICA DE RESEÑAS ---
+        let idResenaActiva = null;
+        let estrellasEdit = 0;
+
         function cargarMisResenas() {
             const correoActual = localStorage.getItem('envStarCorreo');
             const resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
@@ -106,16 +160,65 @@
 
             contenedor.innerHTML = misResenas.slice().reverse().map(r => `
                 <div style="background: #fdfdfd; padding: 15px; border-radius: 8px; border-left: 4px solid #f05a50; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <div style="color: #f05a50; font-size: 1.3rem; margin-bottom: 5px;">
-                        ${'&#9733;'.repeat(r.estrellas)}${'&#9734;'.repeat(5 - r.estrellas)}
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div style="color: #f05a50; font-size: 1.3rem; margin-bottom: 5px;">
+                            ${'&#9733;'.repeat(r.estrellas)}${'&#9734;'.repeat(5 - r.estrellas)}
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <button class="btn-accion btn-editar" onclick="abrirEditarResena(${r.id})">✏️ Editar</button>
+                            <button class="btn-accion btn-borrar" onclick="confirmarEliminarResena(${r.id})">🗑️</button>
+                        </div>
                     </div>
-                    <p style="margin: 0; font-style: italic; color: #444;">"${r.comentario}"</p>
+                    <p style="margin: 5px 0; font-style: italic; color: #444;">"${r.comentario}"</p>
                     <small style="color: #888; display: block; margin-top: 10px;">Publicado el ${r.fecha}</small>
                 </div>
             `).join('');
         }
 
-        // Leer Comentarios Generales de la Comunidad
+        function seleccionarEstrellaEdit(valor) {
+            estrellasEdit = valor;
+            const estrellas = document.querySelectorAll('#edit-estrellas-resena .star');
+            estrellas.forEach((star, index) => { star.style.color = index < valor ? '#f05a50' : '#ccc'; });
+        }
+
+        function abrirEditarResena(id) {
+            const resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
+            const resena = resenas.find(r => r.id === id);
+            if(resena) {
+                idResenaActiva = id;
+                document.getElementById('edit-texto-resena').value = resena.comentario;
+                seleccionarEstrellaEdit(resena.estrellas);
+                document.getElementById('modalEditarResena').style.display = 'flex';
+            }
+        }
+
+        function guardarEdicionResena() {
+            let resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
+            resenas = resenas.map(r => {
+                if(r.id === idResenaActiva) {
+                    r.comentario = document.getElementById('edit-texto-resena').value.trim();
+                    r.estrellas = estrellasEdit;
+                }
+                return r;
+            });
+            localStorage.setItem('resenas', JSON.stringify(resenas));
+            cerrarModal('modalEditarResena');
+            cargarMisResenas();
+            mostrarAlerta('Tu reseña ha sido actualizada.', 'Actualizado');
+        }
+
+        function confirmarEliminarResena(id) {
+            mostrarConfirmacion('¿Seguro que deseas eliminar esta reseña de forma permanente?', () => {
+                let resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
+                resenas = resenas.filter(r => r.id !== id);
+                localStorage.setItem('resenas', JSON.stringify(resenas));
+                cargarMisResenas();
+            });
+        }
+
+        // --- LÓGICA DE COMENTARIOS COMUNIDAD ---
+        let idComentarioActivo = null;
+
         function cargarMisComentarios() {
             const correoActual = localStorage.getItem('envStarCorreo');
             const comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
@@ -129,13 +232,51 @@
 
             contenedor.innerHTML = misComentarios.slice().reverse().map(c => `
                 <div style="background: #fdfdfd; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <p style="margin: 0; color: #444;">"${c.comentario}"</p>
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <p style="margin: 0; color: #444; width: 75%;">"${c.comentario}"</p>
+                        <div style="display:flex; gap:8px;">
+                            <button class="btn-accion btn-editar" onclick="abrirEditarComentario(${c.id})">✏️</button>
+                            <button class="btn-accion btn-borrar" onclick="confirmarEliminarComentario(${c.id})">🗑️</button>
+                        </div>
+                    </div>
                     <small style="color: #888; display: block; margin-top: 10px;">Publicado el ${c.fecha}</small>
                 </div>
             `).join('');
         }
 
-        // Cargar datos al entrar a la página
+        function abrirEditarComentario(id) {
+            const comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
+            const comentario = comentarios.find(c => c.id === id);
+            if(comentario) {
+                idComentarioActivo = id;
+                document.getElementById('edit-texto-comentario').value = comentario.comentario;
+                document.getElementById('modalEditarComentario').style.display = 'flex';
+            }
+        }
+
+        function guardarEdicionComentario() {
+            let comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
+            comentarios = comentarios.map(c => {
+                if(c.id === idComentarioActivo) {
+                    c.comentario = document.getElementById('edit-texto-comentario').value.trim();
+                }
+                return c;
+            });
+            localStorage.setItem('comentarios', JSON.stringify(comentarios));
+            cerrarModal('modalEditarComentario');
+            cargarMisComentarios();
+            mostrarAlerta('Tu comentario ha sido actualizado.', 'Actualizado');
+        }
+
+        function confirmarEliminarComentario(id) {
+            mostrarConfirmacion('¿Seguro que deseas eliminar este comentario?', () => {
+                let comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
+                comentarios = comentarios.filter(c => c.id !== id);
+                localStorage.setItem('comentarios', JSON.stringify(comentarios));
+                cargarMisComentarios();
+            });
+        }
+
         window.onload = function() {
             let nombreUser = localStorage.getItem('envStarUser') || 'Usuario Invitado';
             let correoUser = localStorage.getItem('envStarCorreo') || 'invitado@envstar.com';
@@ -143,7 +284,6 @@
             document.getElementById('perfil-nombre').innerText = '¡Hola, ' + nombreUser + '!';
             document.getElementById('perfil-correo').innerText = correoUser;
 
-            // Disparar las dos funciones
             cargarMisResenas();
             cargarMisComentarios();
         };

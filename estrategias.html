@@ -15,226 +15,44 @@
         --card-bg: #ffffff;
         --text: #333333;
     }
-
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        background-color: var(--bg);
-        color: var(--text);
-    }
-
-    /* Navegación por módulos */
-    .nav-modulo {
-        background: var(--secondary);
-        padding: 15px 20px;
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        align-items: center;
-    }
-
-    .nav-modulo button {
-        background: rgba(255, 255, 255, 0.15);
-        color: white;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: 600;
-        white-space: nowrap;
-        transition: all 0.3s ease;
-    }
-
-    .nav-modulo button.active, .nav-modulo button:hover {
-        background: var(--primary);
-    }
-
-    .container {
-        max-width: 1100px;
-        margin: 25px auto;
-        padding: 0 20px;
-    }
-
-    .seccion-demo {
-        display: none;
-        animation: fadeIn 0.4s ease-in-out forwards;
-    }
-
-    .seccion-demo.active {
-        display: block;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card {
-        background: var(--card-bg);
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 15px rgba(255, 180, 180, 0.822);
-        margin-bottom: 25px;
-    }
-
-    /* Estilos Marketing */
-    .promo-banner {
-        background: linear-gradient(135deg, #f05a50 0%, #f37b72 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .code-badge {
-        background: white;
-        color: var(--primary);
-        padding: 5px 12px;
-        border-radius: 6px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        border: 2px dashed var(--primary);
-    }
-
-    .hero-campaign {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
-        align-items: center;
-    }
-
-    .hero-campaign img {
-        width: 100%;
-        border-radius: 12px;
-        max-height: 300px;
-        object-fit: cover;
-    }
-
-    /* Formularios y Botones */
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 600;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-sizing: border-box;
-    }
-
-    .btn {
-        background: var(--primary);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .btn:hover {
-        background: var(--primary-hover);
-        transform: translateY(-2px);
-    }
-
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg); color: var(--text); }
+    .nav-modulo { background: var(--secondary); padding: 15px 20px; display: flex; gap: 10px; overflow-x: auto; position: sticky; top: 0; z-index: 100; align-items: center; }
+    .nav-modulo button { background: rgba(255, 255, 255, 0.15); color: white; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s; }
+    .nav-modulo button.active, .nav-modulo button:hover { background: var(--primary); }
+    .container { max-width: 1100px; margin: 25px auto; padding: 0 20px; }
+    .seccion-demo { display: none; animation: fadeIn 0.4s forwards; }
+    .seccion-demo.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .card { background: var(--card-bg); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(255, 180, 180, 0.822); margin-bottom: 25px; }
+    .promo-banner { background: linear-gradient(135deg, #f05a50 0%, #f37b72 100%); color: white; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .code-badge { background: white; color: var(--primary); padding: 5px 12px; border-radius: 6px; font-weight: bold; border: 2px dashed var(--primary); }
+    .hero-campaign { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; }
+    .hero-campaign img { width: 100%; border-radius: 12px; max-height: 300px; object-fit: cover; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+    .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+    .btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .btn:hover { background: var(--primary-hover); }
     .btn-accent { background: var(--accent); }
     .btn-secondary { background: #6c757d; }
-
-    /* Comentarios & Testimonios */
-    .grid-comments {
-        display: grid;
-        gap: 15px;
-        margin-top: 20px;
-    }
-
-    .comment-item {
-        background: var(--primary-light);
-        padding: 15px;
-        border-radius: 8px;
-        border-left: 4px solid var(--primary);
-    }
-
-    /* Grid de Publicaciones C2C */
-    .grid-c2c {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-    }
-
-    .item-c2c {
-        border: 1px solid #eee;
-        border-radius: 10px;
-        padding: 15px;
-        background: white;
-    }
-
-    /* Subasta */
-    .auction-box {
-        text-align: center;
-        border: 2px solid var(--primary-light);
-        padding: 20px;
-        border-radius: 12px;
-    }
-
-    .timer {
-        font-size: 2rem;
-        font-weight: bold;
-        color: var(--primary);
-        margin: 15px 0;
-    }
-
-    .bids-history {
-        max-height: 150px;
-        overflow-y: auto;
-        text-align: left;
-        margin-top: 15px;
-        background: #f8fafc;
-        padding: 10px;
-        border-radius: 8px;
-    }
-
-    .alert-toast {
-        padding: 10px 15px;
-        background: #d4edda;
-        color: #155724;
-        border-radius: 8px;
-        margin-top: 10px;
-        display: none;
-    }
-
-    /* ESTILOS DE ESTRELLAS PARA RESEÑAS */
-    .rating-stars {
-        margin-bottom: 15px;
-    }
-    .rating-stars .star {
-        font-size: 35px;
-        cursor: pointer;
-        color: #ccc;
-        transition: color 0.2s;
-    }
-    .rating-stars .star:hover {
-        color: var(--primary);
-    }
-</style>
+    .grid-comments { display: grid; gap: 15px; margin-top: 20px; }
+    .comment-item { background: var(--primary-light); padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary); }
+    .grid-c2c { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+    .item-c2c { border: 1px solid #eee; border-radius: 10px; padding: 15px; background: white; }
+    .auction-box { text-align: center; border: 2px solid var(--primary-light); padding: 20px; border-radius: 12px; }
+    .timer { font-size: 2rem; font-weight: bold; color: var(--primary); margin: 15px 0; }
+    .bids-history { max-height: 150px; overflow-y: auto; text-align: left; margin-top: 15px; background: #f8fafc; padding: 10px; border-radius: 8px; }
+    .alert-toast { padding: 10px 15px; background: #d4edda; color: #155724; border-radius: 8px; margin-top: 10px; display: none; }
+    .rating-stars { margin-bottom: 15px; }
+    .rating-stars .star { font-size: 35px; cursor: pointer; color: #ccc; transition: color 0.2s; }
+    .rating-stars .star:hover { color: var(--primary); }
+    /* Modal styles integrados rápidos */
+    .modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000; }
+    .modal-box { background:white; padding:25px; border-radius: 15px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+  </style>
 </head>
 <body>
 
-    <!-- Menú Superior de Estrategia -->
     <nav class="nav-modulo">
         <button class="active" onclick="verModulo('promos', this)">1. Promociones</button>
         <button onclick="verModulo('landing', this)">2. Escaparate Landing</button>
@@ -242,47 +60,31 @@
         <button onclick="verModulo('c2c-publicar', this)">4. Publicar</button>
         <button onclick="verModulo('c2c-mis-items', this)">5. Mis Publicaciones</button>
         <button onclick="verModulo('subasta', this)">6. Subasta</button>
-        
-        <!-- NUEVO BOTÓN 7 -->
         <button onclick="verModulo('resenas', this)">7. Reseñas</button>
-        
         <a href="perfil.html" style="color: white; text-decoration: none; padding: 10px 18px; border-radius: 20px; background: rgba(196, 95, 95, 0.977); font-weight: 600; white-space: nowrap; margin-left: auto;">Mi Perfil</a>
     </nav>
 
     <div class="container">
-
         <!-- 1. PROMOCIONES -->
         <section id="mod-promos" class="seccion-demo active">
             <h2>Panel de Promociones Activas</h2>
             <div class="promo-banner">
-                <div>
-                    <h3>¡Súper Descuento de Temporada!</h3>
-                    <p style="margin: 0;">Obtén 10% OFF en tu compra usando el código exclusivo.</p>
-                </div>
+                <div><h3>¡Súper Descuento de Temporada!</h3><p style="margin: 0;">Obtén 10% OFF en tu compra.</p></div>
                 <div>Código: <span class="code-badge">ENV10</span></div>
             </div>
-
             <div class="card">
                 <h3>Simular Proceso de Compra</h3>
                 <div class="form-group">
-                    <label>Selecciona un producto del catálogo:</label>
                     <select id="select-producto" class="form-control" onchange="actualizarCarrito()">
                         <option value="450">Caja Sorpresa - $450.00 MXN</option>
                         <option value="600">Arreglo Especial - $600.00 MXN</option>
-                        <option value="250">Capibara crochet - $250.00 MXN</option>
-                        <option value="350">Kit Cumpleañero - $350.00 MXN</option>
-                        <option value="180">Taza Mágica - $180.00 MXN</option>
-                        <option value="120">Libreta Snoopy - $120.00 MXN</option>
-                        <option value="200">Caja Dulce - $200.00 MXN</option>
-                        <option value="80">Globo Metálico - $80.00 MXN</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Cantidad:</label>
-                    <input type="number" id="input-cantidad" class="form-control" value="1" min="1" style="max-width: 150px;" onchange="actualizarCarrito()" onkeyup="actualizarCarrito()">
+                    <input type="number" id="input-cantidad" class="form-control" value="1" min="1" style="max-width: 150px;" onchange="actualizarCarrito()">
                 </div>
                 <div style="display: flex; gap: 10px; max-width: 400px; margin-top: 15px;">
-                    <input type="text" id="input-cupon" class="form-control" placeholder="Ingresa código ej: ENV10">
+                    <input type="text" id="input-cupon" class="form-control" placeholder="Ingresa código">
                     <button class="btn btn-accent" onclick="aplicarCupon()">Aplicar</button>
                 </div>
                 <div id="toast-cupon" class="alert-toast"></div>
@@ -290,71 +92,44 @@
             </div>
         </section>
 
-        <!-- 2. ESCAPARATE / LANDING -->
+        <!-- 2. LANDING -->
         <section id="mod-landing" class="seccion-demo">
             <div class="card hero-campaign">
                 <div>
                     <span style="background: #ffe3e3; color: var(--primary); padding: 4px 8px; border-radius: 4px; font-weight: bold;">EDICIÓN LIMITADA</span>
                     <h1 style="margin: 10px 0;">Caja Personalizada para pareja</h1>
-                    <p>Diseñada a mano con detalles personalizados, peluche artesanal y luces LED integradas.</p>
-                    <button class="btn" style="font-size: 1.1rem; padding: 12px 25px;" onclick="alert('¡Redirigiendo al checkout del producto destacado!')">¡Comprar Ahora!</button>
+                    <p>Diseñada a mano con detalles personalizados y luces LED.</p>
+                    <button class="btn" style="font-size: 1.1rem; padding: 12px 25px;" onclick="alert('Checkout de producto destacado')">¡Comprar Ahora!</button>
                 </div>
-                <div>
-                    <img src="img/manualidad1.jpeg" alt="Producto Destacado" onerror="this.src='https://via.placeholder.com/400x300?text=Producto+Destacado'">
-                </div>
-            </div>
-             <div class="card">
-                <h3>Lo que dicen nuestros clientes</h3>
-                <div class="grid-comments" id="contenedor-resenas-publicas">
-                    <!-- Reseñas fijas de ejemplo -->
-                    <div class="comment-item">
-                        <strong style="color: var(--primary);">★★★★★</strong> <strong>Mariana R.</strong>
-                        <p style="margin: 5px 0 0 0;">"Llegó a tiempo y la calidad superó mis expectativas. 100% recomendado."</p>
-                    </div>
-                    <div class="comment-item">
-                        <strong style="color: var(--primary);">★★★★★</strong> <strong>Carlos G.</strong>
-                        <p style="margin: 5px 0 0 0;">"El empaque es hermoso y los detalles son súper originales."</p>
-                    </div>
-                </div>
+                <div><img src="img/manualidad1.jpeg" alt="Destacado"></div>
             </div>
         </section>
 
-        <!-- 3. COMUNIDAD Y COMENTARIOS -->
+        <!-- 3. COMUNIDAD -->
         <section id="mod-comunidad" class="seccion-demo">
             <div class="card">
-                
-                <h3 style="margin-top: 30px;">Comentarios Recientes</h3>
-                <div id="lista-comentarios" class="grid-comments">
-                    <div class="comment-item">
-                        <strong>Andrea P.</strong>
-                        <p style="margin: 5px 0 0 0;">¡Me encanta la sección de regalos personalizados!</p>
+                <h2>Comunidad Env&Star</h2>
+                <form id="form-comentario" onsubmit="agregarComentario(event)">
+                    <div class="form-group">
+                        <label>Tu Nombre:</label><input type="text" id="com-nombre" class="form-control" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label>Comentario:</label><textarea id="com-texto" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Publicar Comentario</button>
+                </form>
+                <div id="lista-comentarios" class="grid-comments"></div>
             </div>
         </section>
 
-        <!-- 4. C2C - PUBLICAR PRODUCTO -->
+        <!-- 4. PUBLICAR PRODUCTO C2C -->
         <section id="mod-c2c-publicar" class="seccion-demo">
             <div class="card" style="max-width: 600px; margin: auto;">
                 <h2>Publica tu Producto </h2>
-                <p>¿Tienes manualidades o regalos que quieras vender en nuestra plataforma?</p>
                 <form id="form-c2c" onsubmit="publicarC2C(event)">
-                    <div class="form-group">
-                        <label>Título del Producto:</label>
-                        <input type="text" id="c2c-titulo" class="form-control" required placeholder="Ej. Arreglo Floral Hecho a Mano">
-                    </div>
-                    <div class="form-group">
-                        <label>Precio ($ MXN):</label>
-                        <input type="number" id="c2c-precio" class="form-control" required placeholder="250">
-                    </div>
-                    <div class="form-group">
-                        <label>Descripción:</label>
-                        <textarea id="c2c-desc" class="form-control" rows="3" required placeholder="Detalles de tu producto..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Imagen del Producto:</label>
-                        <input type="file" id="c2c-foto" accept="image/*" class="form-control">
-                    </div>
+                    <div class="form-group"><label>Título:</label><input type="text" id="c2c-titulo" class="form-control"></div>
+                    <div class="form-group"><label>Precio ($ MXN):</label><input type="number" id="c2c-precio" class="form-control"></div>
+                    <div class="form-group"><label>Descripción:</label><textarea id="c2c-desc" class="form-control" rows="3"></textarea></div>
                     <button type="submit" class="btn btn-accent" style="width: 100%;">Publicar Producto</button>
                 </form>
                 <div id="toast-c2c" class="alert-toast"></div>
@@ -370,34 +145,26 @@
             </div>
         </section>
 
-        <!-- 6. SUBASTA SIMULADA -->
+        <!-- 6. SUBASTA -->
         <section id="mod-subasta" class="seccion-demo">
             <div class="card auction-box" style="max-width: 550px; margin: auto;">
                 <span style="background: #e2e8f0; padding: 4px 10px; border-radius: 20px; font-weight: bold;">SUBASTA EN VIVO</span>
-                <h2 style="margin: 10px 0;">Capibara Gigante de Colección</h2>
-                <img src="img/capibara.jpg" alt="Subasta" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;" onerror="this.src='https://via.placeholder.com/150?text=Capibara'">
+                <h2 style="margin: 10px 0;">Capibara Gigante</h2>
+                <img src="img/capibara.jpg" style="width: 150px; border-radius: 10px;">
                 <div class="timer" id="auction-timer">04:59</div>
-                <p>Oferta más alta actual: <strong id="monto-subasta" style="color: var(--accent); font-size: 1.3rem;">$320.00 MXN</strong></p>
-                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                    <input type="number" id="input-oferta" class="form-control" style="width: 150px;" placeholder="Monto ej. 350">
+                <p>Oferta actual: <strong id="monto-subasta" style="color: var(--accent);">$320.00 MXN</strong></p>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <input type="number" id="input-oferta" class="form-control" style="width: 150px;">
                     <button class="btn btn-accent" onclick="hacerOferta()">Ofertar</button>
                 </div>
                 <div id="toast-subasta" class="alert-toast"></div>
-                <div class="bids-history">
-                    <strong>Historial de Ofertas:</strong>
-                    <ul id="lista-ofertas" style="margin: 5px 0 0 0; padding-left: 20px; font-size: 0.9rem;">
-                        <li>Juan M. ofertó $320.00 MXN</li>
-                        <li>Elena R. ofertó $300.00 MXN</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
-        <!-- 7. RESEÑAS Y VALORACIONES -->
+        <!-- 7. RESEÑAS -->
         <section id="mod-resenas" class="seccion-demo">
             <div class="card">
                 <h2>Califica tu Experiencia</h2>
-                <p>¿Qué te parecieron nuestros productos y estrategias? ¡Déjanos tu reseña!</p>
                 <form id="form-resena" onsubmit="guardarResena(event)">
                     <div class="rating-stars" id="estrellas-resena">
                         <span class="star" onclick="seleccionarEstrella(1)">&#9733;</span>
@@ -406,32 +173,39 @@
                         <span class="star" onclick="seleccionarEstrella(4)">&#9733;</span>
                         <span class="star" onclick="seleccionarEstrella(5)">&#9733;</span>
                     </div>
-                    <textarea id="texto-resena" class="form-control" rows="3" required placeholder="Escribe tu reseña aquí..."></textarea>
+                    <textarea id="texto-resena" class="form-control" rows="3" required></textarea>
                     <button type="submit" class="btn btn-accent" style="margin-top: 15px;">Publicar Reseña</button>
                 </form>
                 <div id="toast-resena" class="alert-toast"></div>
             </div>
             <div class="card">
-                <h2>Tus Comentarios</h2>
-                <p>Déjanos tu opinión o sugerencia general:</p>
-                <form id="form-comentario" onsubmit="agregarComentario(event)">
-                    <div class="form-group">
-                        <label>Tu Nombre:</label>
-                        <input type="text" id="com-nombre" class="form-control" required placeholder="Ej. Sofia López">
-                    </div>
-                    <div class="form-group">
-                        <label>Comentario:</label>
-                        <textarea id="com-texto" class="form-control" rows="3" required placeholder="Escribe tu mensaje aquí..."></textarea>
-                    </div>
-                    <button type="submit" class="btn">Publicar Comentario</button>
-                </form>
-           
+                <h3>Reseñas de la comunidad</h3>
+                <div class="grid-comments" id="contenedor-resenas-publicas"></div>
+            </div>
         </section>
+    </div>
 
+    <!-- MODAL EDITAR PUBLICACIÓN C2C -->
+    <div id="modalEditarC2C" class="modal-overlay" style="display:none;">
+        <div class="modal-box" style="width: 90%; max-width: 450px;">
+            <h3 style="color: var(--primary); margin-top: 0;">Editar Producto</h3>
+            <div class="form-group">
+                <label>Título:</label><input type="text" id="edit-c2c-titulo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Precio ($):</label><input type="number" id="edit-c2c-precio" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Descripción:</label><textarea id="edit-c2c-desc" class="form-control" rows="3"></textarea>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-secondary" style="flex:1;" onclick="document.getElementById('modalEditarC2C').style.display='none'">Cancelar</button>
+                <button class="btn btn-accent" style="flex:1;" onclick="guardarEdicionC2C()">Guardar Cambios</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Navegación
         function verModulo(idModulo, boton) {
             document.querySelectorAll('.seccion-demo').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-modulo button').forEach(btn => btn.classList.remove('active'));
@@ -439,234 +213,43 @@
             boton.classList.add('active');
         }
 
-        // Lógica de Reseñas (Pestaña 7)
-        let calificacionSeleccionada = 0;
-        function seleccionarEstrella(valor) {
-            calificacionSeleccionada = valor;
-            const estrellas = document.querySelectorAll('#estrellas-resena .star');
-            estrellas.forEach((star, index) => {
-                star.style.color = index < valor ? 'var(--primary)' : '#ccc';
-            });
-        }
+        // ==========================================
+        // 4 & 5. LÓGICA DE PUBLICACIONES C2C (CON LOCALSTORAGE)
+        // ==========================================
+        let idC2CEditando = null;
 
-        function guardarResena(e) {
-            e.preventDefault();
-            const correo = localStorage.getItem('envStarCorreo');
-            const nombre = localStorage.getItem('envStarUser') || 'Usuario Invitado';
-            const toast = document.getElementById('toast-resena');
-
-            if (!correo) {
-                alert('Debes iniciar sesión primero para publicar tu reseña.');
-                window.location.href = 'login.html';
-                return;
+        function inicializarC2C() {
+            let pubs = JSON.parse(localStorage.getItem('misPublicacionesC2C') || '[]');
+            // Si es la primera vez que entra, creamos un producto de ejemplo
+            if(pubs.length === 0) {
+                pubs = [{ id: 1, titulo: "Taza Personalizada Snoopy", precio: 180, desc: "Taza de cerámica pintada a mano." }];
+                localStorage.setItem('misPublicacionesC2C', JSON.stringify(pubs));
             }
-
-            if (calificacionSeleccionada === 0) {
-                alert('Por favor selecciona una calificación en estrellas.');
-                return;
-            }
-
-            const comentario = document.getElementById('texto-resena').value.trim();
-            const nuevaResena = {
-                id: Date.now(),
-                correo: correo,
-                nombre: nombre,
-                estrellas: calificacionSeleccionada,
-                comentario: comentario,
-                fecha: new Date().toLocaleDateString()
-            };
-
-            const resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
-            resenas.push(nuevaResena);
-            localStorage.setItem('resenas', JSON.stringify(resenas));
-
-            toast.innerText = '¡Reseña publicada! Puedes verla en tu Perfil.';
-            toast.style.display = 'block';
-            toast.style.background = '#d4edda';
-            toast.style.color = '#155724';
-            
-            // Actualizar la lista en tiempo real en esta misma pantalla
-            mostrarResenasPublicas();
-
-            document.getElementById('form-resena').reset();
-            seleccionarEstrella(0);
-            setTimeout(() => { toast.style.display = 'none'; }, 3500);
+            renderMisPublicaciones();
         }
-
-        // Mostrar reseñas almacenadas en la pestaña 7
-        function mostrarResenasPublicas() {
-            const resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
-            const contenedor = document.getElementById('contenedor-resenas-publicas');
-            
-            // Mantener las reseñas de ejemplo fijas y agregar las nuevas arriba
-            let htmlBase = `
-                <div class="comment-item">
-                    <strong style="color: var(--primary);">★★★★★</strong> <strong>Mariana R.</strong>
-                    <p style="margin: 5px 0 0 0;">"Llegó a tiempo y la calidad superó mis expectativas. 100% recomendado."</p>
-                </div>
-                <div class="comment-item">
-                    <strong style="color: var(--primary);">★★★★★</strong> <strong>Carlos G.</strong>
-                    <p style="margin: 5px 0 0 0;">"El empaque es hermoso y los detalles son súper originales."</p>
-                </div>
-            `;
-
-            const htmlDinamico = resenas.slice().reverse().map(r => `
-                <div class="comment-item">
-                    <strong style="color: var(--primary);">${'★'.repeat(r.estrellas)}${'☆'.repeat(5 - r.estrellas)}</strong> <strong>${r.nombre}</strong>
-                    <p style="margin: 5px 0 0 0;">"${r.comentario}"</p>
-                </div>
-            `).join('');
-
-            contenedor.innerHTML = htmlDinamico + htmlBase;
-        }
-
-        // 1. Promociones (Vinculado con Admin)
-        let cuponAplicado = false;
-        let descuentoActual = 0; // Guardará el % dinámico que viene del admin
-
-        function actualizarCarrito() {
-            const select = document.getElementById('select-producto');
-            if (!select) return;
-            const precioBase = parseFloat(select.value) || 0;
-            const cantidadInput = parseInt(document.getElementById('input-cantidad').value) || 1;
-            const cantidad = cantidadInput < 1 ? 1 : cantidadInput;
-            const subtotal = precioBase * cantidad;
-            const totalText = document.getElementById('total-carrito');
-
-            if (cuponAplicado) {
-                // Aplica el porcentaje de descuento que se haya encontrado
-                const multiplicador = (100 - descuentoActual) / 100;
-                const totalConDescuento = (subtotal * multiplicador).toFixed(2);
-                
-                totalText.innerHTML = `Total: <s style="color:#888;">$${subtotal.toFixed(2)}</s> <strong style="color:var(--accent);">$${totalConDescuento} MXN</strong>`;
-            } else {
-                totalText.innerHTML = `Total: <strong>$${subtotal.toFixed(2)} MXN</strong>`;
-            }
-        }
-
-        function aplicarCupon() {
-            const codigo = document.getElementById('input-cupon').value.trim().toUpperCase();
-            const toast = document.getElementById('toast-cupon');
-            
-            // Traemos los cupones creados en la página de Admin
-            const cuponesAdmin = JSON.parse(localStorage.getItem('cupones') || '[]');
-            
-            // Buscamos si el código ingresado existe y si está marcado como "Activo"
-            const cuponEncontrado = cuponesAdmin.find(c => c.codigo === codigo && c.activo);
-
-            if (cuponEncontrado) {
-                // Si lo encuentra en la base del admin
-                cuponAplicado = true;
-                descuentoActual = parseFloat(cuponEncontrado.descuento);
-                toast.style.display = 'block';
-                toast.style.background = '#d4edda';
-                toast.style.color = '#155724';
-                toast.innerText = `¡Cupón válido! Descuento del ${descuentoActual}% aplicado.`;
-            } else if (codigo === 'ENV10') {
-                // Cupón base por defecto (el de prueba)
-                cuponAplicado = true;
-                descuentoActual = 10;
-                toast.style.display = 'block';
-                toast.style.background = '#d4edda';
-                toast.style.color = '#155724';
-                toast.innerText = '¡Código ENV10 aplicado! Descuento del 10% efectuado.';
-            } else {
-                // Si no existe, lo escribieron mal o el admin lo desactivó
-                cuponAplicado = false;
-                descuentoActual = 0;
-                toast.style.display = 'block';
-                toast.style.background = '#f8d7da';
-                toast.style.color = '#721c24';
-                toast.innerText = 'Código inválido, inactivo o vencido.';
-            }
-            
-            actualizarCarrito();
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            actualizarCarrito();
-            mostrarResenasPublicas(); // Cargar las reseñas al inicio
-        });
-
-        // 3. Comentarios Generales (Actualizado para guardar en memoria)
-        function agregarComentario(e) {
-            e.preventDefault();
-            const correo = localStorage.getItem('envStarCorreo');
-            // Toma el nombre de la sesión, o si no hay, del input
-            const nombreUser = localStorage.getItem('envStarUser') || document.getElementById('com-nombre').value;
-
-          
-
-            const texto = document.getElementById('com-texto').value.trim();
-
-            const nuevoComentario = {
-                id: Date.now(),
-                correo: correo,
-                nombre: nombreUser,
-                comentario: texto,
-                fecha: new Date().toLocaleDateString()
-            };
-
-            // Guardar en localStorage bajo "comentarios"
-            const comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
-            comentarios.push(nuevoComentario);
-            localStorage.setItem('comentarios', JSON.stringify(comentarios));
-
-            document.getElementById('form-comentario').reset();
-            mostrarComentariosComunidad(); // Refrescar la lista
-        }
-
-        function mostrarComentariosComunidad() {
-            const comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
-            const contenedor = document.getElementById('lista-comentarios');
-
-            // Mantener el de ejemplo base
-            let htmlBase = `
-                <div class="comment-item">
-                    <strong>Andrea P.</strong>
-                    <p style="margin: 5px 0 0 0;">¡Me encanta la sección de regalos personalizados!</p>
-                </div>
-            `;
-
-            const htmlDinamico = comentarios.slice().reverse().map(c => `
-                <div class="comment-item">
-                    <strong>${c.nombre}</strong>
-                    <p style="margin: 5px 0 0 0;">${c.comentario}</p>
-                    <small style="color: #888; font-size: 0.8rem;">${c.fecha}</small>
-                </div>
-            `).join('');
-
-            contenedor.innerHTML = htmlDinamico + htmlBase;
-        }
-
-        // Asegurarnos de que se carguen al abrir la página
-        document.addEventListener("DOMContentLoaded", function() {
-            actualizarCarrito();
-            mostrarResenasPublicas(); 
-            mostrarComentariosComunidad(); // <--- Llamada nueva
-        });
-
-        // 4 & 5. C2C Publicaciones
-        let misPublicaciones = [
-            { id: 1, titulo: "Taza Personalizada Snoopy", precio: 180, desc: "Taza de cerámica pintada a mano." }
-        ];
 
         function renderMisPublicaciones() {
+            const pubs = JSON.parse(localStorage.getItem('misPublicacionesC2C') || '[]');
             const contenedor = document.getElementById('grid-mis-publicaciones');
             contenedor.innerHTML = '';
-            if(misPublicaciones.length === 0) {
+            
+            if(pubs.length === 0) {
                 contenedor.innerHTML = '<p style="color:#888;">No tienes publicaciones activas aún.</p>';
                 return;
             }
-            misPublicaciones.forEach(item => {
+            
+            pubs.slice().reverse().forEach(item => {
                 const el = document.createElement('div');
                 el.className = 'item-c2c';
                 el.innerHTML = `
                     <div style="width:100%; height:100px; background:#e2e8f0; border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">📦</div>
-                    <strong>${item.titulo}</strong>
-                    <p style="margin: 5px 0; color: var(--accent); font-weight:bold;">$${item.precio}.00 MXN</p>
-                    <small style="color:#666; display:block; margin-bottom:10px;">${item.desc}</small>
-                    <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.8rem;" onclick="eliminarPublicacion(${item.id})">🗑️ Eliminar</button>
+                    <strong style="display:block; font-size:1.1rem; margin-bottom:5px;">${item.titulo}</strong>
+                    <p style="margin: 0; color: var(--accent); font-weight:bold; font-size:1.2rem;">$${item.precio}.00 MXN</p>
+                    <small style="color:#666; display:block; margin: 10px 0;">${item.desc}</small>
+                    <div style="display:flex; gap:10px; margin-top:15px;">
+                        <button class="btn btn-secondary" style="flex:1; padding:6px; font-size:0.8rem; background:#e2e8f0; color:#333;" onclick="abrirModalEdicionC2C(${item.id})">✏️ Editar</button>
+                        <button class="btn" style="flex:1; padding:6px; font-size:0.8rem; background:#d9534f;" onclick="eliminarPublicacion(${item.id})">🗑️ Borrar</button>
+                    </div>
                 `;
                 contenedor.appendChild(el);
             });
@@ -674,60 +257,136 @@
 
         function publicarC2C(e) {
             e.preventDefault();
-            const titulo = document.getElementById('c2c-titulo').value;
-            const precio = document.getElementById('c2c-precio').value;
-            const desc = document.getElementById('c2c-desc').value;
-            const nuevoItem = { id: Date.now(), titulo: titulo, precio: precio, desc: desc };
-            misPublicaciones.unshift(nuevoItem);
+            const pubs = JSON.parse(localStorage.getItem('misPublicacionesC2C') || '[]');
+            const nuevoItem = {
+                id: Date.now(),
+                titulo: document.getElementById('c2c-titulo').value,
+                precio: document.getElementById('c2c-precio').value,
+                desc: document.getElementById('c2c-desc').value
+            };
+            pubs.push(nuevoItem);
+            localStorage.setItem('misPublicacionesC2C', JSON.stringify(pubs));
+            
             renderMisPublicaciones();
             const toast = document.getElementById('toast-c2c');
             toast.style.display = 'block';
-            toast.innerText = '¡Tu producto se ha publicado exitosamente en la plataforma!';
+            toast.innerText = '¡Producto publicado con éxito!';
             document.getElementById('form-c2c').reset();
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
         }
 
         function eliminarPublicacion(id) {
-            misPublicaciones = misPublicaciones.filter(p => p.id !== id);
-            renderMisPublicaciones();
-        }
-
-        // 6. Subastas
-        let ofertaActual = 320;
-        function hacerOferta() {
-            const input = document.getElementById('input-oferta');
-            const monto = parseFloat(input.value);
-            const toast = document.getElementById('toast-subasta');
-            if (!monto || monto <= ofertaActual) {
-                toast.style.display = 'block';
-                toast.style.background = '#f8d7da';
-                toast.style.color = '#721c24';
-                toast.innerText = `Ingresa una oferta mayor a $${ofertaActual}.00 MXN`;
-                return;
+            if(confirm('¿Seguro que deseas eliminar tu producto de la tienda de la comunidad?')) {
+                let pubs = JSON.parse(localStorage.getItem('misPublicacionesC2C') || '[]');
+                pubs = pubs.filter(p => p.id !== id);
+                localStorage.setItem('misPublicacionesC2C', JSON.stringify(pubs));
+                renderMisPublicaciones();
             }
-            ofertaActual = monto;
-            document.getElementById('monto-subasta').innerText = `$${monto}.00 MXN`;
-            const lista = document.getElementById('lista-ofertas');
-            const nuevaOferta = document.createElement('li');
-            nuevaOferta.innerHTML = `<strong>Tú</strong> ofertaste $${monto}.00 MXN`;
-            lista.prepend(nuevaOferta);
-            toast.style.display = 'block';
-            toast.style.background = '#d4edda';
-            toast.style.color = '#155724';
-            toast.innerText = '¡Oferta registrada con éxito (Simulado)!';
-            input.value = '';
         }
 
-        let tiempo = 299;
-        setInterval(() => {
-            if (tiempo <= 0) return;
-            tiempo--;
-            const min = String(Math.floor(tiempo / 60)).padStart(2, '0');
-            const sec = String(tiempo % 60).padStart(2, '0');
-            document.getElementById('auction-timer').innerText = `${min}:${sec}`;
-        }, 1000);
+        function abrirModalEdicionC2C(id) {
+            const pubs = JSON.parse(localStorage.getItem('misPublicacionesC2C') || '[]');
+            const item = pubs.find(p => p.id === id);
+            if(item) {
+                idC2CEditando = id;
+                document.getElementById('edit-c2c-titulo').value = item.titulo;
+                document.getElementById('edit-c2c-precio').value = item.precio;
+                document.getElementById('edit-c2c-desc').value = item.desc;
+                document.getElementById('modalEditarC2C').style.display = 'flex';
+            }
+        }
 
-        renderMisPublicaciones();
+        function guardarEdicionC2C() {
+            let pubs = JSON.parse(localStorage.getItem('misPublicacionesC2C') || '[]');
+            pubs = pubs.map(p => {
+                if(p.id === idC2CEditando) {
+                    p.titulo = document.getElementById('edit-c2c-titulo').value;
+                    p.precio = document.getElementById('edit-c2c-precio').value;
+                    p.desc = document.getElementById('edit-c2c-desc').value;
+                }
+                return p;
+            });
+            localStorage.setItem('misPublicacionesC2C', JSON.stringify(pubs));
+            document.getElementById('modalEditarC2C').style.display = 'none';
+            renderMisPublicaciones();
+            alert('Producto actualizado con éxito.');
+        }
+
+
+        // ==========================================
+        // RESTO DE LÓGICA (CUPONES, RESEÑAS, COMENTARIOS)
+        // ==========================================
+        let cuponAplicado = false, descuentoActual = 0;
+        function actualizarCarrito() {
+            const select = document.getElementById('select-producto');
+            if (!select) return;
+            const subtotal = (parseFloat(select.value) || 0) * (parseInt(document.getElementById('input-cantidad').value) || 1);
+            const txt = document.getElementById('total-carrito');
+            if (cuponAplicado) txt.innerHTML = `Total: <s>$${subtotal.toFixed(2)}</s> <strong style="color:var(--accent);">$${(subtotal * ((100-descuentoActual)/100)).toFixed(2)} MXN</strong>`;
+            else txt.innerHTML = `Total: <strong>$${subtotal.toFixed(2)} MXN</strong>`;
+        }
+
+        function aplicarCupon() {
+            const cod = document.getElementById('input-cupon').value.trim().toUpperCase();
+            const cuponesAdmin = JSON.parse(localStorage.getItem('cupones') || '[]');
+            const cEncontrado = cuponesAdmin.find(c => c.codigo === cod && c.activo);
+            const toast = document.getElementById('toast-cupon');
+            
+            if (cEncontrado) { cuponAplicado = true; descuentoActual = parseFloat(cEncontrado.descuento); toast.style.background = '#d4edda'; toast.style.color = '#155724'; toast.innerText = `¡Cupón válido! -${descuentoActual}%`; }
+            else if (cod === 'ENV10') { cuponAplicado = true; descuentoActual = 10; toast.style.background = '#d4edda'; toast.style.color = '#155724'; toast.innerText = '¡Código ENV10 aplicado! -10%'; }
+            else { cuponAplicado = false; descuentoActual = 0; toast.style.background = '#f8d7da'; toast.style.color = '#721c24'; toast.innerText = 'Código inválido o inactivo.'; }
+            toast.style.display = 'block'; actualizarCarrito();
+        }
+
+        function agregarComentario(e) {
+            e.preventDefault();
+            const correo = localStorage.getItem('envStarCorreo');
+            const nom = localStorage.getItem('envStarUser') || document.getElementById('com-nombre').value;
+            if(!correo){ alert('Inicia sesión para guardar tu comentario en tu perfil.'); window.location.href='login.html'; return; }
+            
+            const arr = JSON.parse(localStorage.getItem('comentarios') || '[]');
+            arr.push({ id: Date.now(), correo: correo, nombre: nom, comentario: document.getElementById('com-texto').value.trim(), fecha: new Date().toLocaleDateString() });
+            localStorage.setItem('comentarios', JSON.stringify(arr));
+            document.getElementById('form-comentario').reset();
+            mostrarComentariosComunidad();
+        }
+
+        function mostrarComentariosComunidad() {
+            const arr = JSON.parse(localStorage.getItem('comentarios') || '[]');
+            const html = arr.slice().reverse().map(c => `<div class="comment-item"><strong>${c.nombre}</strong><p style="margin:5px 0 0 0;">${c.comentario}</p><small style="color:#888;">${c.fecha}</small></div>`).join('');
+            document.getElementById('lista-comentarios').innerHTML = html + `<div class="comment-item"><strong>Andrea P.</strong><p style="margin:5px 0 0 0;">¡Me encanta la sección de regalos!</p></div>`;
+        }
+
+        let califSeleccionada = 0;
+        function seleccionarEstrella(v) { califSeleccionada = v; document.querySelectorAll('#estrellas-resena .star').forEach((s,i) => s.style.color = i < v ? 'var(--primary)' : '#ccc'); }
+        
+        function guardarResena(e) {
+            e.preventDefault();
+            const correo = localStorage.getItem('envStarCorreo');
+            if(!correo){ alert('Inicia sesión para reseñar.'); return; }
+            if(califSeleccionada === 0){ alert('Selecciona una calificación en estrellas.'); return; }
+            const arr = JSON.parse(localStorage.getItem('resenas') || '[]');
+            arr.push({ id: Date.now(), correo: correo, nombre: localStorage.getItem('envStarUser'), estrellas: califSeleccionada, comentario: document.getElementById('texto-resena').value.trim(), fecha: new Date().toLocaleDateString() });
+            localStorage.setItem('resenas', JSON.stringify(arr));
+            
+            const toast = document.getElementById('toast-resena'); toast.style.display='block'; toast.innerText='¡Reseña publicada!';
+            mostrarResenasPublicas(); document.getElementById('form-resena').reset(); seleccionarEstrella(0);
+            setTimeout(()=> toast.style.display='none', 3000);
+        }
+
+        function mostrarResenasPublicas() {
+            const arr = JSON.parse(localStorage.getItem('resenas') || '[]');
+            const base = `<div class="comment-item"><strong style="color:var(--primary);">★★★★★</strong> <strong>Mariana R.</strong><p>Llegó a tiempo, 100% recomendado.</p></div>`;
+            const dim = arr.slice().reverse().map(r => `<div class="comment-item"><strong style="color:var(--primary);">${'★'.repeat(r.estrellas)}${'☆'.repeat(5-r.estrellas)}</strong> <strong>${r.nombre}</strong><p style="margin:5px 0 0 0;">"${r.comentario}"</p></div>`).join('');
+            document.getElementById('contenedor-resenas-publicas').innerHTML = dim + base;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            actualizarCarrito();
+            mostrarResenasPublicas();
+            mostrarComentariosComunidad();
+            inicializarC2C();
+        });
     </script>
 </body>
 </html>
