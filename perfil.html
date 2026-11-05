@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <a href="inicio.html" class="logo-container">
             <img src="img/Logo.png" alt="Logo"> Env&Star
         </a>
@@ -17,7 +17,6 @@
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="estrategias.html">Estrategias</a></li>
             <li><a href="index.html" onclick="cerrarSesion()">Cerrar Sesión</a></li>
-            
         </ul>
     </nav>
 
@@ -26,9 +25,9 @@
             <h2>Mi Panel</h2>
             
             <!-- Tarjeta de Info del Usuario -->
-            <div style="background: var(--color-fondo); padding: 25px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; text-align: left;">
+            <div style="background: var(--color-fondo, #fde2e1); padding: 25px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; text-align: left;">
                 <div>
-                    <h3 id="perfil-nombre" style="margin-bottom: 5px; font-size: 1.5rem; color: var(--texto-oscuro);">¡Hola!</h3>
+                    <h3 id="perfil-nombre" style="margin-bottom: 5px; font-size: 1.5rem; color: #333;">¡Hola!</h3>
                     <p id="perfil-correo" style="margin-bottom: 0; color: #555;">usuario@correo.com</p>
                 </div>
                 <button class="btn btn-secundario" style="margin-top: 0;" onclick="mostrarAlerta('Se abriría un formulario para cambiar tu foto, nombre y contraseña.', '✏️ Editar Perfil')">Editar perfil</button>
@@ -41,22 +40,37 @@
                 <button class="btn btn-secundario" onclick="mostrarAlerta('Tarjetas guardadas de forma segura.', '💳 Métodos de pago')">Métodos de pago</button>
                 <button class="btn btn-secundario" onclick="mostrarAlerta('Tus artículos favoritos para futuras compras.', '❤️ Lista de deseos')">Lista de deseos</button>
             </div>
+
+            <!-- SECCIÓN 1: MIS RESEÑAS (Estrellas) -->
+            <div style="background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 30px; text-align: left;">
+                <h3 style="color: #333; margin-top: 0; border-bottom: 2px solid #fde2e1; padding-bottom: 10px;">Mis Reseñas Realizadas</h3>
+                <div id="lista-mis-resenas" style="display: grid; gap: 15px; margin-top: 15px;">
+                    <!-- Se llena automáticamente con JS -->
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: MIS COMENTARIOS (Comunidad) -->
+            <div style="background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 30px; text-align: left;">
+                <h3 style="color: #333; margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Mis Comentarios en la Comunidad</h3>
+                <div id="lista-mis-comentarios" style="display: grid; gap: 15px; margin-top: 15px;">
+                    <!-- Se llena automáticamente con JS -->
+                </div>
+            </div>
             
-            <a href="#" class="btn" style="background-color: #d9534f;" onclick="mostrarAlerta('¿Estás seguro que deseas cerrar sesión?', 'Cerrar Sesión', () => { window.location.href='index.html'; localStorage.removeItem('envStarUser'); })">Cerrar sesión</a>
+            <a href="#" class="btn" style="background-color: #d9534f;" onclick="mostrarAlerta('¿Estás seguro que deseas cerrar sesión?', 'Cerrar Sesión', () => { window.location.href='index.html'; localStorage.removeItem('envStarUser'); localStorage.removeItem('envStarCorreo'); })">Cerrar sesión</a>
         </section>
     </main>
 
     <!-- Modal Alerta Personalizada -->
-    <div id="customAlert" class="modal-overlay">
-        <div class="modal-box" style="max-width: 350px;">
-            <h3 id="alertTitulo" style="color: var(--color-principal); margin-bottom: 15px;">Aviso</h3>
-            <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5;">Mensaje</p>
-            <button class="btn" onclick="cerrarAlerta()">Aceptar</button>
+    <div id="customAlert" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+        <div class="modal-box" style="background:white; padding:20px; max-width: 350px; text-align: center; border-radius: 15px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+            <h3 id="alertTitulo" style="color: #f05a50; margin-bottom: 15px;">Aviso</h3>
+            <p id="alertMensaje" style="margin-bottom: 20px; line-height: 1.5; color:#555;">Mensaje</p>
+            <button class="btn" style="width:100%; background:#28a745; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;" onclick="cerrarAlerta()">Aceptar</button>
         </div>
     </div>
 
-    <!-- Tu Footer aquí -->
-
+    <!-- Script Principal -->
     <script>
         function mostrarAlerta(mensaje, titulo = 'Aviso', accion = null) {
             document.getElementById('alertTitulo').innerText = titulo;
@@ -78,6 +92,49 @@
             localStorage.removeItem('envStarCorreo');
         }
 
+        // Leer Reseñas (Con Estrellas)
+        function cargarMisResenas() {
+            const correoActual = localStorage.getItem('envStarCorreo');
+            const resenas = JSON.parse(localStorage.getItem('resenas') || '[]');
+            const contenedor = document.getElementById('lista-mis-resenas');
+            const misResenas = resenas.filter(r => r.correo === correoActual);
+
+            if (misResenas.length === 0) {
+                contenedor.innerHTML = '<p style="color: #888;">Aún no has escrito ninguna reseña.</p>';
+                return;
+            }
+
+            contenedor.innerHTML = misResenas.slice().reverse().map(r => `
+                <div style="background: #fdfdfd; padding: 15px; border-radius: 8px; border-left: 4px solid #f05a50; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div style="color: #f05a50; font-size: 1.3rem; margin-bottom: 5px;">
+                        ${'&#9733;'.repeat(r.estrellas)}${'&#9734;'.repeat(5 - r.estrellas)}
+                    </div>
+                    <p style="margin: 0; font-style: italic; color: #444;">"${r.comentario}"</p>
+                    <small style="color: #888; display: block; margin-top: 10px;">Publicado el ${r.fecha}</small>
+                </div>
+            `).join('');
+        }
+
+        // Leer Comentarios Generales de la Comunidad
+        function cargarMisComentarios() {
+            const correoActual = localStorage.getItem('envStarCorreo');
+            const comentarios = JSON.parse(localStorage.getItem('comentarios') || '[]');
+            const contenedor = document.getElementById('lista-mis-comentarios');
+            const misComentarios = comentarios.filter(c => c.correo === correoActual);
+
+            if (misComentarios.length === 0) {
+                contenedor.innerHTML = '<p style="color: #888;">No has participado en la comunidad aún.</p>';
+                return;
+            }
+
+            contenedor.innerHTML = misComentarios.slice().reverse().map(c => `
+                <div style="background: #fdfdfd; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <p style="margin: 0; color: #444;">"${c.comentario}"</p>
+                    <small style="color: #888; display: block; margin-top: 10px;">Publicado el ${c.fecha}</small>
+                </div>
+            `).join('');
+        }
+
         // Cargar datos al entrar a la página
         window.onload = function() {
             let nombreUser = localStorage.getItem('envStarUser') || 'Usuario Invitado';
@@ -85,6 +142,10 @@
             
             document.getElementById('perfil-nombre').innerText = '¡Hola, ' + nombreUser + '!';
             document.getElementById('perfil-correo').innerText = correoUser;
+
+            // Disparar las dos funciones
+            cargarMisResenas();
+            cargarMisComentarios();
         };
     </script>
 </body>
